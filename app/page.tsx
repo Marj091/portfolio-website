@@ -123,25 +123,19 @@ function Reveal({
   );
 }
 
-function FloatingIcon({
+function BgIcon({
   icon: Icon,
   className,
-  delay = 0,
 }: {
   icon: typeof Monitor;
   className: string;
-  delay?: number;
 }) {
   return (
-    <motion.div
-      className={`absolute z-20 ${className}`}
-      animate={{ y: [0, -12, 0] }}
-      transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay }}
-    >
-      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/5 backdrop-blur-md border border-white/15 flex items-center justify-center shadow-xl">
-        <Icon size={22} strokeWidth={1.5} className="text-white/85" />
+    <div className={`absolute z-0 ${className}`}>
+      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm flex items-center justify-center">
+        <Icon size={34} strokeWidth={1.25} className="text-white/30" />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -150,7 +144,7 @@ function FloatingIcon({
 function Nav() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-[#0F1624]/80 backdrop-blur-md border-b border-white/10">
+    <header className="fixed top-0 inset-x-0 z-50 bg-[#080B12]/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#hero" className="font-bold tracking-tight text-[#F1F3F8]">
           Marjolijn de Vries<span className="text-[#7C3AED]">.</span>
@@ -177,7 +171,7 @@ function Nav() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 bg-[#0F1624]">
+        <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 bg-[#080B12]">
           {navLinks.map(({ label, href }) => (
             <a
               key={label}
@@ -248,37 +242,45 @@ function Hero() {
           </div>
         </div>
 
-        {/* Uitgesneden foto met compositie */}
+        {/* Uitgesneden foto, in de achtergrond verwerkt */}
         <div className="relative flex justify-center md:justify-end">
-          <div className="relative w-[300px] sm:w-[360px] lg:w-[400px] aspect-[4/5]">
-            {/* Zachte paarse gloed */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-[#7C3AED]/50 to-[#7C3AED]/5 blur-3xl" />
-            </div>
-            {/* Vorm achter de foto */}
-            <div className="absolute left-8 right-8 bottom-0 top-14 rounded-[2.5rem] bg-gradient-to-br from-[#7C3AED]/70 via-[#6D28D9]/40 to-transparent rotate-6" />
-            {/* Dun kaderlijntje */}
-            <div className="absolute left-4 right-4 bottom-2 top-10 rounded-[2.5rem] border border-white/15 -rotate-3" />
+          <div className="relative w-[330px] sm:w-[420px] lg:w-[460px] aspect-[4/5]">
+            {/* Zachte, vervloeiende paarse gloed (radiaal, geen harde randen) */}
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[135%] h-[135%] pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 45%, rgba(124,58,237,0.40) 0%, rgba(124,58,237,0.14) 34%, rgba(124,58,237,0.04) 55%, transparent 72%)",
+              }}
+            />
+            {/* Donkere basis eronder zodat de foto 'staat' en niet zweeft */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-2/3 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(120% 90% at 50% 100%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, transparent 70%)",
+              }}
+            />
 
-            {/* Decoratieve punten */}
-            <div className="absolute top-6 right-2 w-2 h-2 rounded-full bg-[#A78BFA]" />
-            <div className="absolute bottom-10 left-0 w-1.5 h-1.5 rounded-full bg-white/40" />
+            {/* Grotere, stilstaande achtergrond-icoontjes */}
+            <BgIcon icon={Monitor} className="top-2 -left-4 sm:-left-10" />
+            <BgIcon icon={Palette} className="top-28 -right-4 sm:-right-10" />
+            <BgIcon icon={Coffee} className="bottom-40 -left-3 sm:-left-9" />
+            <BgIcon icon={Paintbrush} className="bottom-14 -right-2 sm:-right-6" />
 
-            {/* Foto */}
+            {/* Foto — groter, geen kader, onderkant vervaagt in de achtergrond */}
             <Image
               src="/marjolijn-cutout.png"
               alt="Marjolijn de Vries"
               width={720}
               height={900}
               priority
-              className="absolute inset-0 w-full h-full object-contain object-bottom z-10 drop-shadow-2xl"
+              className="absolute inset-0 w-full h-full object-contain object-bottom z-10"
+              style={{
+                WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+                maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+              }}
             />
-
-            {/* Zwevende lijn-icoontjes */}
-            <FloatingIcon icon={Monitor} className="top-4 -left-3 sm:-left-6" delay={0} />
-            <FloatingIcon icon={Palette} className="top-24 -right-3 sm:-right-6" delay={0.4} />
-            <FloatingIcon icon={Coffee} className="bottom-24 -left-3 sm:-left-7" delay={0.9} />
-            <FloatingIcon icon={Paintbrush} className="bottom-6 right-0 sm:-right-4" delay={1.4} />
           </div>
         </div>
       </div>
@@ -335,7 +337,7 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
       <div className="grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
         {/* Beeld */}
         <div className={reversed ? "md:order-2" : ""}>
-          <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#161E2E] transition-transform duration-300 hover:-translate-y-1">
+          <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#121826] transition-transform duration-300 hover:-translate-y-1">
             <div className="aspect-[16/10] relative overflow-hidden">
               {"video" in project && project.video ? (
                 <video
@@ -439,7 +441,7 @@ function CV() {
               return (
                 <Reveal key={i} delay={i * 0.05}>
                   <div className="relative pl-14">
-                    <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-[#161E2E] border border-[#7C3AED]/40 flex items-center justify-center">
+                    <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-[#121826] border border-[#7C3AED]/40 flex items-center justify-center">
                       <Icon size={18} className="text-[#A78BFA]" />
                     </div>
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
@@ -480,7 +482,7 @@ function Contact() {
   }
 
   const inputClass =
-    "w-full bg-[#0F1624] border border-white/10 rounded-xl px-4 py-3.5 text-sm text-[#F1F3F8] placeholder-[#5A6578] focus:outline-none focus:border-[#7C3AED] transition-colors";
+    "w-full bg-[#080B12] border border-white/10 rounded-xl px-4 py-3.5 text-sm text-[#F1F3F8] placeholder-[#5A6578] focus:outline-none focus:border-[#7C3AED] transition-colors";
 
   return (
     <section id="contact" className="py-24 px-6 border-t border-white/5">
