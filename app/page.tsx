@@ -130,29 +130,33 @@ function Reveal({ children, delay = 0, className }: { children: ReactNode; delay
   );
 }
 
-const TYPE_FULL = "Grafisch Vormgever met specialisatie in AI & Automatisering";
-const TYPE_MID = "Grafisch Vormgever".length;
+const TYPE_WORDS = ["Grafisch Vormgever", "met specialisatie in AI & Automatisering"];
 
 function Typewriter() {
-  const [len, setLen] = useState(0);
-  const [stage, setStage] = useState(0); // 0: typen tot 'Grafisch Vormgever', 1: aanvullen, 2: wissen
+  const [wordIdx, setWordIdx] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const targets = [TYPE_MID, TYPE_FULL.length, 0];
-    const target = targets[stage];
-    if (len === target) {
-      const pause = stage === 0 ? 900 : stage === 1 ? 2800 : 700;
-      const t = setTimeout(() => setStage((stage + 1) % 3), pause);
-      return () => clearTimeout(t);
+    const current = TYPE_WORDS[wordIdx];
+    let t: ReturnType<typeof setTimeout>;
+    if (!deleting && text === current) {
+      t = setTimeout(() => setDeleting(true), 1900);
+    } else if (deleting && text === "") {
+      setDeleting(false);
+      setWordIdx((i) => (i + 1) % TYPE_WORDS.length);
+    } else {
+      t = setTimeout(
+        () => setText(current.slice(0, deleting ? text.length - 1 : text.length + 1)),
+        deleting ? 35 : 70
+      );
     }
-    const dir = len < target ? 1 : -1;
-    const t = setTimeout(() => setLen(len + dir), dir > 0 ? 70 : 30);
     return () => clearTimeout(t);
-  }, [len, stage]);
+  }, [text, deleting, wordIdx]);
 
   return (
     <span>
-      {TYPE_FULL.slice(0, len)}
+      {text}
       <span className="inline-block w-[3px] h-[0.95em] bg-[#A78BFA] ml-1 translate-y-[0.12em] animate-pulse" />
     </span>
   );
@@ -242,20 +246,30 @@ function Hero() {
         {/* Uitgesneden foto, verweven met de achtergrond */}
         <div className="relative flex justify-center md:justify-end">
           <div className="relative w-[330px] sm:w-[420px] lg:w-[460px] aspect-[4/5]">
-            {/* Zachte, subtiele paarse gloed die vervloeit (blijft binnen de randen) */}
-            <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] h-[125%] pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle at 50% 44%, rgba(124,58,237,0.16) 0%, rgba(124,58,237,0.05) 42%, transparent 64%)",
-              }}
-            />
+            {/* Zachte, sterk vervaagde paarse gloed (blurblob, geen randen) */}
+            <div className="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[74%] h-[58%] rounded-full bg-[#7C3AED]/16 blur-[80px] pointer-events-none" />
 
-            {/* Kale, grotere achtergrond-icoontjes, ver uiteen in de donkere hoeken */}
-            <BgIcon icon={Monitor} size={72} className="top-6 -left-8 sm:-left-14" />
-            <BgIcon icon={Palette} size={72} className="top-6 -right-8 sm:-right-14" />
-            <BgIcon icon={Coffee} size={72} className="bottom-16 -left-8 sm:-left-14" />
-            <BgIcon icon={Paintbrush} size={72} className="bottom-16 -right-8 sm:-right-14" />
+            {/* Speels verspreide, kale achtergrond-icoontjes, ver uiteen */}
+            <BgIcon icon={Monitor} size={70} className="top-2 -left-16 sm:-left-32" />
+            <BgIcon icon={Palette} size={64} className="-top-6 right-6 sm:right-16" />
+            <BgIcon icon={Coffee} size={72} className="bottom-6 -left-12 sm:-left-24" />
+            <BgIcon icon={Paintbrush} size={66} className="-bottom-2 -right-4 sm:-right-14" />
+
+            {/* Krullend lijntje naar Marjolijn toe */}
+            <svg
+              className="absolute bottom-24 -left-6 sm:-left-16 w-24 h-20 text-[#A78BFA]/30 z-0 pointer-events-none"
+              viewBox="0 0 120 100"
+              fill="none"
+            >
+              <path
+                d="M6 92 C 34 96, 30 60, 54 54 C 74 49, 70 22, 96 20"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeDasharray="1 8"
+              />
+              <path d="M88 12 L100 18 L92 29" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
 
             {/* Foto, zonder kader, randen vervagen zacht in de achtergrond (radiaal) */}
             <Image
@@ -267,9 +281,9 @@ function Hero() {
               className="absolute inset-0 w-full h-full object-contain object-bottom z-10"
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(66% 74% at 50% 40%, #000 50%, rgba(0,0,0,0.25) 80%, transparent 100%)",
+                  "radial-gradient(64% 72% at 50% 40%, #000 46%, rgba(0,0,0,0.22) 78%, transparent 100%)",
                 maskImage:
-                  "radial-gradient(66% 74% at 50% 40%, #000 50%, rgba(0,0,0,0.25) 80%, transparent 100%)",
+                  "radial-gradient(64% 72% at 50% 40%, #000 46%, rgba(0,0,0,0.22) 78%, transparent 100%)",
               }}
             />
           </div>
