@@ -33,6 +33,7 @@ const projects = [
     title: "Urenregistratietool",
     tags: ["Offline dashboard", "Presets", "Teamoverzicht"],
     image: "/projecten/urenregistratie.jpg",
+    video: "/projecten/urenregistratie.mp4",
     body: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd, en de leidinggevende had geen overzicht zonder alles handmatig samen te voegen en te rekenen. Ik bouwde een dashboard dat offline werkt, zonder installatie, met presets voor vaste terugkerende taken — teamleden vullen met één druk op de knop hun uren in. De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
   },
   {
@@ -290,13 +291,25 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
         <div className={reversed ? "md:order-2" : ""}>
           <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#161E2E]">
             <div className="aspect-[16/10] relative">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {"video" in project && project.video ? (
+                <video
+                  src={project.video}
+                  poster={project.image}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover object-top"
+                />
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              )}
             </div>
             {project.note && (
               <span className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-white/80 font-medium">
