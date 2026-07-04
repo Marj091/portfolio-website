@@ -13,6 +13,10 @@ import {
   Wallet,
   UtensilsCrossed,
   ShieldCheck,
+  Monitor,
+  Coffee,
+  Paintbrush,
+  Palette,
 } from "lucide-react";
 
 // ─── Data ──────────────────────────────────────────────────────────────────
@@ -59,6 +63,7 @@ const projects = [
     title: "Maaltijden selectietool",
     tags: ["Python", "Browserautomatisering", "AI-scoring"],
     image: "/projecten/maaltijden.jpg",
+    video: "/projecten/maaltijden.mp4",
     body: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd en leverde niet altijd de beste match op. Ik bouwde een Python-tool die het hele proces automatiseert: via browserautomatisering leest een script alle beschikbare maaltijden uit, een eigen scoringslogica beoordeelt ze op persoonlijke voorkeuren, en de gekozen maaltijden worden automatisch klaargezet. Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
   },
 ];
@@ -114,6 +119,28 @@ function Reveal({
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
+    </motion.div>
+  );
+}
+
+function FloatingIcon({
+  icon: Icon,
+  className,
+  delay = 0,
+}: {
+  icon: typeof Monitor;
+  className: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className={`absolute z-20 ${className}`}
+      animate={{ y: [0, -12, 0] }}
+      transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay }}
+    >
+      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/5 backdrop-blur-md border border-white/15 flex items-center justify-center shadow-xl">
+        <Icon size={22} strokeWidth={1.5} className="text-white/85" />
+      </div>
     </motion.div>
   );
 }
@@ -221,20 +248,37 @@ function Hero() {
           </div>
         </div>
 
-        {/* Uitgesneden foto */}
+        {/* Uitgesneden foto met compositie */}
         <div className="relative flex justify-center md:justify-end">
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-[#7C3AED]/40 to-[#7C3AED]/5 blur-2xl" />
-          </div>
-          <div className="relative w-64 sm:w-80 lg:w-[360px]">
+          <div className="relative w-[300px] sm:w-[360px] lg:w-[400px] aspect-[4/5]">
+            {/* Zachte paarse gloed */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-[#7C3AED]/50 to-[#7C3AED]/5 blur-3xl" />
+            </div>
+            {/* Vorm achter de foto */}
+            <div className="absolute left-8 right-8 bottom-0 top-14 rounded-[2.5rem] bg-gradient-to-br from-[#7C3AED]/70 via-[#6D28D9]/40 to-transparent rotate-6" />
+            {/* Dun kaderlijntje */}
+            <div className="absolute left-4 right-4 bottom-2 top-10 rounded-[2.5rem] border border-white/15 -rotate-3" />
+
+            {/* Decoratieve punten */}
+            <div className="absolute top-6 right-2 w-2 h-2 rounded-full bg-[#A78BFA]" />
+            <div className="absolute bottom-10 left-0 w-1.5 h-1.5 rounded-full bg-white/40" />
+
+            {/* Foto */}
             <Image
               src="/marjolijn-cutout.png"
               alt="Marjolijn de Vries"
               width={720}
               height={900}
               priority
-              className="relative w-full h-auto drop-shadow-2xl"
+              className="absolute inset-0 w-full h-full object-contain object-bottom z-10 drop-shadow-2xl"
             />
+
+            {/* Zwevende lijn-icoontjes */}
+            <FloatingIcon icon={Monitor} className="top-4 -left-3 sm:-left-6" delay={0} />
+            <FloatingIcon icon={Palette} className="top-24 -right-3 sm:-right-6" delay={0.4} />
+            <FloatingIcon icon={Coffee} className="bottom-24 -left-3 sm:-left-7" delay={0.9} />
+            <FloatingIcon icon={Paintbrush} className="bottom-6 right-0 sm:-right-4" delay={1.4} />
           </div>
         </div>
       </div>
@@ -247,7 +291,8 @@ function Hero() {
 function About() {
   return (
     <section id="over-mij" className="py-24 px-6 border-t border-white/5">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">
             Over mij
@@ -274,6 +319,7 @@ function About() {
             </p>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -289,8 +335,8 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
       <div className="grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
         {/* Beeld */}
         <div className={reversed ? "md:order-2" : ""}>
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#161E2E]">
-            <div className="aspect-[16/10] relative">
+          <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#161E2E] transition-transform duration-300 hover:-translate-y-1">
+            <div className="aspect-[16/10] relative overflow-hidden">
               {"video" in project && project.video ? (
                 <video
                   src={project.video}
@@ -299,14 +345,14 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover object-top"
+                  className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                 />
               ) : (
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               )}
@@ -373,7 +419,8 @@ function Projects() {
 function CV() {
   return (
     <section id="cv" className="py-24 px-6 border-t border-white/5">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">
             CV
@@ -406,6 +453,7 @@ function CV() {
               );
             })}
           </div>
+        </div>
         </div>
       </div>
     </section>
