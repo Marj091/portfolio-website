@@ -22,15 +22,12 @@ import {
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
-const heroRoles = ["Grafisch Vormgever", "AI & Automatisering"];
-
 const heroChips = [
   "Adobe InDesign",
-  "Illustrator",
-  "Photoshop",
-  "AI-agenten",
+  "JavaScript",
   "Python",
-  "Automatisering",
+  "Browserautomatisering",
+  "ExtendScript",
 ];
 
 type Media = { type: "image" | "video"; src: string; poster?: string };
@@ -133,31 +130,29 @@ function Reveal({ children, delay = 0, className }: { children: ReactNode; delay
   );
 }
 
-function Typewriter({ words }: { words: string[] }) {
-  const [wordIdx, setWordIdx] = useState(0);
-  const [text, setText] = useState("");
-  const [deleting, setDeleting] = useState(false);
+const TYPE_FULL = "Grafisch Vormgever met specialisatie in AI & Automatisering";
+const TYPE_MID = "Grafisch Vormgever".length;
+
+function Typewriter() {
+  const [len, setLen] = useState(0);
+  const [stage, setStage] = useState(0); // 0: typen tot 'Grafisch Vormgever', 1: aanvullen, 2: wissen
 
   useEffect(() => {
-    const current = words[wordIdx];
-    let t: ReturnType<typeof setTimeout>;
-    if (!deleting && text === current) {
-      t = setTimeout(() => setDeleting(true), 1800);
-    } else if (deleting && text === "") {
-      setDeleting(false);
-      setWordIdx((i) => (i + 1) % words.length);
-    } else {
-      t = setTimeout(
-        () => setText(current.slice(0, deleting ? text.length - 1 : text.length + 1)),
-        deleting ? 45 : 85
-      );
+    const targets = [TYPE_MID, TYPE_FULL.length, 0];
+    const target = targets[stage];
+    if (len === target) {
+      const pause = stage === 0 ? 900 : stage === 1 ? 2800 : 700;
+      const t = setTimeout(() => setStage((stage + 1) % 3), pause);
+      return () => clearTimeout(t);
     }
+    const dir = len < target ? 1 : -1;
+    const t = setTimeout(() => setLen(len + dir), dir > 0 ? 70 : 30);
     return () => clearTimeout(t);
-  }, [text, deleting, wordIdx, words]);
+  }, [len, stage]);
 
   return (
     <span>
-      {text}
+      {TYPE_FULL.slice(0, len)}
       <span className="inline-block w-[3px] h-[0.95em] bg-[#A78BFA] ml-1 translate-y-[0.12em] animate-pulse" />
     </span>
   );
@@ -218,8 +213,8 @@ function Hero() {
             <br />
             de Vries
           </h1>
-          <p className="text-xl sm:text-2xl font-semibold text-[#A78BFA] mb-7 min-h-[2.2rem]">
-            <Typewriter words={heroRoles} />
+          <p className="text-xl sm:text-2xl font-semibold text-[#A78BFA] mb-7 min-h-[4rem] sm:min-h-[2.6rem]">
+            <Typewriter />
           </p>
           <p className="text-base sm:text-lg text-[#9AA4B2] leading-relaxed max-w-xl mb-8">
             Ik ontwerp duidelijke en consistente visuele communicatie, van brochures en
@@ -247,22 +242,22 @@ function Hero() {
         {/* Uitgesneden foto, verweven met de achtergrond */}
         <div className="relative flex justify-center md:justify-end">
           <div className="relative w-[330px] sm:w-[420px] lg:w-[460px] aspect-[4/5]">
-            {/* Zachte, subtiele paarse gloed die vervloeit */}
+            {/* Zachte, subtiele paarse gloed die vervloeit (blijft binnen de randen) */}
             <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[155%] h-[155%] pointer-events-none"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] h-[125%] pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(circle at 50% 42%, rgba(124,58,237,0.22) 0%, rgba(124,58,237,0.08) 38%, transparent 66%)",
+                  "radial-gradient(circle at 50% 44%, rgba(124,58,237,0.16) 0%, rgba(124,58,237,0.05) 42%, transparent 64%)",
               }}
             />
 
-            {/* Kale, grotere achtergrond-icoontjes, weg van het hoofd */}
-            <BgIcon icon={Monitor} className="top-20 -left-10 sm:-left-16" />
-            <BgIcon icon={Palette} className="top-28 -right-8 sm:-right-14" />
-            <BgIcon icon={Coffee} className="bottom-28 -left-8 sm:-left-14" />
-            <BgIcon icon={Paintbrush} className="bottom-14 -right-9 sm:-right-14" />
+            {/* Kale, grotere achtergrond-icoontjes, ver uiteen in de donkere hoeken */}
+            <BgIcon icon={Monitor} size={72} className="top-6 -left-8 sm:-left-14" />
+            <BgIcon icon={Palette} size={72} className="top-6 -right-8 sm:-right-14" />
+            <BgIcon icon={Coffee} size={72} className="bottom-16 -left-8 sm:-left-14" />
+            <BgIcon icon={Paintbrush} size={72} className="bottom-16 -right-8 sm:-right-14" />
 
-            {/* Foto, groter, zonder kader, onderkant vervaagt in de achtergrond */}
+            {/* Foto, zonder kader, randen vervagen zacht in de achtergrond (radiaal) */}
             <Image
               src="/marjolijn-cutout.png"
               alt="Marjolijn de Vries"
@@ -271,8 +266,10 @@ function Hero() {
               priority
               className="absolute inset-0 w-full h-full object-contain object-bottom z-10"
               style={{
-                WebkitMaskImage: "linear-gradient(to bottom, #000 64%, transparent 97%)",
-                maskImage: "linear-gradient(to bottom, #000 64%, transparent 97%)",
+                WebkitMaskImage:
+                  "radial-gradient(66% 74% at 50% 40%, #000 50%, rgba(0,0,0,0.25) 80%, transparent 100%)",
+                maskImage:
+                  "radial-gradient(66% 74% at 50% 40%, #000 50%, rgba(0,0,0,0.25) 80%, transparent 100%)",
               }}
             />
           </div>
