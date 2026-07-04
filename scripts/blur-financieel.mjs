@@ -33,7 +33,7 @@ for (const r of rects) {
   console.log(`regio -> left:${left} top:${top} w:${w} h:${h}`);
   const region = await sharp(src)
     .extract({ left, top, width: w, height: h })
-    .blur(22)
+    .blur(9)
     .toBuffer();
   composites.push({ input: region, left, top });
 }
