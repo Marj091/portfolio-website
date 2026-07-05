@@ -18,7 +18,36 @@ import {
   Paintbrush,
   BrainCircuit,
   Play,
+  LayoutTemplate,
+  Contrast,
+  Sparkles,
+  Code2,
 } from "lucide-react";
+
+// Merk-iconen als eigen SVG (lucide heeft deze niet meer)
+function LinkedInIcon({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1t2.48 2.5zM.24 8h4.52v14H.24V8zM8.24 8h4.33v1.9h.06c.6-1.1 2.07-2.26 4.26-2.26 4.56 0 5.4 3 5.4 6.9V22h-4.52v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.49V22H8.24V8z" />
+    </svg>
+  );
+}
+function InstagramIcon({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <rect x="2" y="2" width="20" height="20" rx="5.5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+function FacebookIcon({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
+    </svg>
+  );
+}
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -78,7 +107,7 @@ const projects: {
     icon: UtensilsCrossed,
     title: "Maaltijden selectietool",
     tags: ["Python", "Browserautomatisering", "Voorkeurscoring"],
-    media: [{ type: "video", src: "/projecten/maaltijden.mp4", poster: "/projecten/maaltijden.jpg" }],
+    media: [{ type: "image", src: "/projecten/maaltijden.jpg" }],
     body: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd. En het leverde niet altijd de beste match op. Ik bouwde een Python-tool die het hele proces automatiseert. Een script leest via browserautomatisering alle beschikbare maaltijden uit. Een eigen scoringslogica beoordeelt ze op mijn voorkeuren. Daarna worden de gekozen maaltijden automatisch klaargezet. Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
   },
 ];
@@ -107,12 +136,27 @@ const cv = [
   },
 ];
 
-// Percentages zijn een eerste inschatting — pas ze gerust aan naar jouw gevoel
 const skills = [
-  { label: "Adobe InDesign", value: 95 },
-  { label: "Illustrator & Photoshop", value: 85 },
-  { label: "AI & Automatisering", value: 80 },
-  { label: "JavaScript & Python", value: 70 },
+  {
+    icon: LayoutTemplate,
+    title: "Adobe InDesign",
+    body: "Dagelijks gebruikt sinds 2012, inclusief scriptgestuurde opmaak voor complexe documenten.",
+  },
+  {
+    icon: Contrast,
+    title: "Illustrator & Photoshop",
+    body: "Vast onderdeel van het productieproces, van beeldbewerking tot narrowcasting-grafieken.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI & Automatisering",
+    body: "Zelf geleerd, toegepast in vier zelfgebouwde tools die dagelijks werk automatiseren.",
+  },
+  {
+    icon: Code2,
+    title: "Bouwen met AI-ondersteuning",
+    body: "JavaScript en Python, ontwikkeld met Claude en Claude Code als vaste werkwijze.",
+  },
 ];
 
 const navLinks = [
@@ -121,6 +165,13 @@ const navLinks = [
   { label: "Projecten", href: "#projecten" },
   { label: "CV", href: "#cv" },
   { label: "Contact", href: "#contact" },
+];
+
+// Vul de href's aan met je eigen profiel-URL's
+const socials = [
+  { icon: LinkedInIcon, href: "#", label: "LinkedIn" },
+  { icon: InstagramIcon, href: "#", label: "Instagram" },
+  { icon: FacebookIcon, href: "#", label: "Facebook" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -150,14 +201,14 @@ function Typewriter() {
     const current = TYPE_WORDS[wordIdx];
     let t: ReturnType<typeof setTimeout>;
     if (!deleting && text === current) {
-      t = setTimeout(() => setDeleting(true), 1900);
+      t = setTimeout(() => setDeleting(true), 2400);
     } else if (deleting && text === "") {
       setDeleting(false);
       setWordIdx((i) => (i + 1) % TYPE_WORDS.length);
     } else {
       t = setTimeout(
         () => setText(current.slice(0, deleting ? text.length - 1 : text.length + 1)),
-        deleting ? 35 : 70
+        deleting ? 55 : 125
       );
     }
     return () => clearTimeout(t);
@@ -189,66 +240,30 @@ function DrawnArrow({
   head: string;
   delay?: number;
 }) {
+  const stroke = {
+    stroke: "currentColor",
+    strokeWidth: 2.4,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    fill: "none",
+  };
   return (
     <svg className={className} viewBox={viewBox} fill="none" aria-hidden>
       <motion.path
         d={d}
-        stroke="currentColor"
-        strokeWidth={2.4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        {...stroke}
         initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.1, delay, ease: "easeInOut" }}
+        animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 7, times: [0, 0.16, 0.9, 1], repeat: Infinity, repeatDelay: 1.6, ease: "easeInOut", delay }}
       />
       <motion.path
         d={head}
-        stroke="currentColor"
-        strokeWidth={2.4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        {...stroke}
         initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.35, delay: delay + 1.0, ease: "easeOut" }}
+        animate={{ pathLength: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
+        transition={{ duration: 7, times: [0, 0.13, 0.24, 0.9, 1], repeat: Infinity, repeatDelay: 1.6, ease: "easeInOut", delay }}
       />
     </svg>
-  );
-}
-
-function SkillRing({ label, value, delay = 0 }: { label: string; value: number; delay?: number }) {
-  const r = 52;
-  const c = 2 * Math.PI * r;
-  return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-28 h-28 sm:w-32 sm:h-32">
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r={r} stroke="rgba(255,255,255,0.08)" strokeWidth="8" fill="none" />
-          <motion.circle
-            cx="60"
-            cy="60"
-            r={r}
-            stroke="#7C3AED"
-            strokeWidth="8"
-            fill="none"
-            strokeLinecap="round"
-            strokeDasharray={c}
-            initial={{ strokeDashoffset: c }}
-            whileInView={{ strokeDashoffset: c * (1 - value / 100) }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.3, delay, ease: "easeOut" }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-extrabold">
-            {value}
-            <span className="text-sm text-[#9AA4B2]">%</span>
-          </span>
-        </div>
-      </div>
-      <p className="mt-4 text-xs sm:text-sm font-semibold uppercase tracking-wide text-[#C7CEDB] text-center">{label}</p>
-    </div>
   );
 }
 
@@ -421,16 +436,29 @@ function Skills() {
   return (
     <section id="vaardigheden" className="py-24 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
-        <div className="max-w-3xl">
+        <div className="max-w-xl">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Vaardigheden</p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Waar ik sterk in ben.</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-12">
+              Waar ik dagelijks mee werk, met bewijs in plaats van een cijfer.
+            </h2>
           </Reveal>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mt-14">
-          {skills.map((s, i) => (
-            <SkillRing key={s.label} label={s.label} value={s.value} delay={i * 0.12} />
-          ))}
+        <div className="grid sm:grid-cols-2 gap-5">
+          {skills.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <Reveal key={s.title} delay={i * 0.09}>
+                <div className="group h-full bg-[#121826] border border-white/10 rounded-2xl p-7 transition-all duration-300 hover:border-[#7C3AED] hover:bg-[#171F2F] hover:-translate-y-1">
+                  <div className="w-11 h-11 rounded-xl bg-[#7C3AED]/12 flex items-center justify-center mb-5">
+                    <Icon size={22} strokeWidth={1.6} className="text-[#A78BFA]" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2.5">{s.title}</h3>
+                  <p className="text-sm text-[#9AA4B2] leading-relaxed">{s.body}</p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -628,6 +656,23 @@ function Contact() {
             <Mail size={18} />
             marjolijndevries03@gmail.com
           </a>
+          <div className="flex items-center gap-3 mt-7">
+            {socials.map((s) => {
+              const Icon = s.icon;
+              return (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-11 h-11 rounded-full border border-white/12 flex items-center justify-center text-[#C7CEDB] hover:text-white hover:border-[#7C3AED] hover:bg-[#7C3AED]/15 transition-colors"
+                >
+                  <Icon size={18} />
+                </a>
+              );
+            })}
+          </div>
         </Reveal>
 
         <Reveal delay={0.1}>
