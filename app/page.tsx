@@ -399,10 +399,10 @@ function Hero() {
 
             {/* Krullend pijltje van het AI-icoon naar het hoofd, op afstand */}
             <DrawnArrow
-              className="absolute top-4 -right-1 sm:-right-6 w-20 h-28 text-[#A78BFA]/60 z-20 pointer-events-none"
-              viewBox="0 0 90 120"
-              d="M78 12 C 82 42, 56 40, 42 58 C 32 70, 38 86, 24 98"
-              head="M38 95 L24 98 L29 85"
+              className="absolute top-8 -right-1 sm:-right-2 w-24 h-32 text-[#A78BFA]/60 z-20 pointer-events-none"
+              viewBox="0 0 95 122"
+              d="M80 18 C 84 48, 58 44, 44 62 C 30 78, 36 98, 18 108"
+              head="M32 105 L18 108 L24 94"
               delay={0.6}
             />
 
