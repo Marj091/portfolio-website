@@ -16,7 +16,6 @@ import {
   Monitor,
   Coffee,
   Paintbrush,
-  BrainCircuit,
   Play,
   FilePen,
   Code2,
@@ -385,7 +384,7 @@ function Hero() {
 
             {/* Speels verspreide, kale achtergrond-icoontjes, ver uiteen */}
             <BgIcon icon={Monitor} size={70} className="top-2 -left-16 sm:-left-32" />
-            <BgIcon icon={BrainCircuit} size={64} className="-top-6 right-6 sm:right-16" />
+            <AiChipIcon size={64} className="absolute z-0 text-white/[0.09] -top-6 right-6 sm:right-16" />
             <BgIcon icon={Coffee} size={72} className="bottom-6 -left-12 sm:-left-24" />
             <BgIcon icon={Paintbrush} size={66} className="-bottom-2 -right-4 sm:-right-14" />
 
@@ -398,12 +397,12 @@ function Hero() {
               delay={0.3}
             />
 
-            {/* Krullend lijntje van onderaf naar Marjolijn (tekent zichzelf) */}
+            {/* Krullend lijntje van het AI-icoon naar Marjolijn (tekent zichzelf) */}
             <DrawnArrow
-              className="absolute bottom-20 -left-5 sm:-left-14 w-24 h-24 text-[#A78BFA]/55 z-20 pointer-events-none"
+              className="absolute top-9 right-7 sm:right-16 w-24 h-24 text-[#A78BFA]/60 z-20 pointer-events-none"
               viewBox="0 0 110 110"
-              d="M8 98 C 46 106, 18 58, 52 52 C 74 48, 66 24, 92 22"
-              head="M79 18 L95 20 L86 34"
+              d="M94 12 C 70 20, 98 56, 60 60 C 40 62, 46 86, 22 90"
+              head="M35 82 L18 92 L31 101"
               delay={0.6}
             />
 
