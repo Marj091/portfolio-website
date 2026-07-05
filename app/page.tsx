@@ -18,9 +18,7 @@ import {
   Paintbrush,
   BrainCircuit,
   Play,
-  LayoutTemplate,
-  Contrast,
-  Sparkles,
+  FilePen,
   Code2,
 } from "lucide-react";
 
@@ -45,6 +43,36 @@ function FacebookIcon({ size = 18, className }: { size?: number; className?: str
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
+    </svg>
+  );
+}
+
+// InDesign-badge met "Id"
+function InDesignIcon({ size = 22, className }: { size?: number; className?: string }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" stroke="currentColor" strokeWidth="1.6" />
+      <text x="12" y="16" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="currentColor" fontFamily="system-ui, sans-serif">
+        Id
+      </text>
+    </svg>
+  );
+}
+
+// AI-chip met "AI"
+function AiChipIcon({ size = 22, className }: { size?: number; className?: string }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="6" y="6" width="12" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M9.5 6V3M14.5 6V3M9.5 21v-3M14.5 21v-3M6 9.5H3M6 14.5H3M21 9.5h-3M21 14.5h-3"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <text x="12" y="15" textAnchor="middle" fontSize="6.5" fontWeight="700" fill="currentColor" fontFamily="system-ui, sans-serif">
+        AI
+      </text>
     </svg>
   );
 }
@@ -99,7 +127,7 @@ const projects: {
     title: "Financieel dashboard",
     tags: ["Dataverwerking", "Categorisatie", "Dashboard"],
     note: "Cijfers geblurd voor privacy",
-    media: [{ type: "image", src: "/projecten/financieel.jpg" }],
+    media: [{ type: "image", src: "/projecten/financieel-v2.jpg" }],
     body: "Een bankapp geeft mij niet genoeg inzicht in mijn uitgaven en spaargedrag. Dus bouwde ik mijn eigen dashboard, dat een jaar aan transactiedata verwerkt. Het categoriseert uitgaven automatisch en maakt spaarpotjes bewerkbaar. Resultaat: beter overzicht en betere financiële beslissingen.",
   },
   {
@@ -138,17 +166,17 @@ const cv = [
 
 const skills = [
   {
-    icon: LayoutTemplate,
+    icon: InDesignIcon,
     title: "Adobe InDesign",
     body: "Dagelijks gebruikt sinds 2012, inclusief scriptgestuurde opmaak voor complexe documenten.",
   },
   {
-    icon: Contrast,
+    icon: FilePen,
     title: "Illustrator & Photoshop",
     body: "Vast onderdeel van het productieproces, van beeldbewerking tot narrowcasting-grafieken.",
   },
   {
-    icon: Sparkles,
+    icon: AiChipIcon,
     title: "AI & Automatisering",
     body: "Zelf geleerd, toegepast in vier zelfgebouwde tools die dagelijks werk automatiseren.",
   },
@@ -167,11 +195,10 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Vul de href's aan met je eigen profiel-URL's
 const socials = [
-  { icon: LinkedInIcon, href: "#", label: "LinkedIn" },
-  { icon: InstagramIcon, href: "#", label: "Instagram" },
-  { icon: FacebookIcon, href: "#", label: "Facebook" },
+  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/marjolijn-de-vries-68938950/", label: "LinkedIn" },
+  { icon: InstagramIcon, href: "https://www.instagram.com/marjolijn91/", label: "Instagram" },
+  { icon: FacebookIcon, href: "https://www.facebook.com/marjolijn.devries.5", label: "Facebook" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -201,14 +228,14 @@ function Typewriter() {
     const current = TYPE_WORDS[wordIdx];
     let t: ReturnType<typeof setTimeout>;
     if (!deleting && text === current) {
-      t = setTimeout(() => setDeleting(true), 2400);
+      t = setTimeout(() => setDeleting(true), 2100);
     } else if (deleting && text === "") {
       setDeleting(false);
       setWordIdx((i) => (i + 1) % TYPE_WORDS.length);
     } else {
       t = setTimeout(
         () => setText(current.slice(0, deleting ? text.length - 1 : text.length + 1)),
-        deleting ? 55 : 125
+        deleting ? 45 : 95
       );
     }
     return () => clearTimeout(t);
@@ -253,15 +280,17 @@ function DrawnArrow({
         d={d}
         {...stroke}
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
-        transition={{ duration: 7, times: [0, 0.16, 0.9, 1], repeat: Infinity, repeatDelay: 1.6, ease: "easeInOut", delay }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.3, delay, ease: "easeInOut" }}
       />
       <motion.path
         d={head}
         {...stroke}
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-        transition={{ duration: 7, times: [0, 0.13, 0.24, 0.9, 1], repeat: Infinity, repeatDelay: 1.6, ease: "easeInOut", delay }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: delay + 1.2, ease: "easeOut" }}
       />
     </svg>
   );
