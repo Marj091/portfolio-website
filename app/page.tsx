@@ -384,25 +384,25 @@ function Hero() {
 
             {/* Speels verspreide, kale achtergrond-icoontjes, ver uiteen */}
             <BgIcon icon={Monitor} size={70} className="top-2 -left-16 sm:-left-32" />
-            <AiChipIcon size={64} className="absolute z-0 text-white/[0.09] -top-6 right-6 sm:right-16" />
+            <AiChipIcon size={64} className="absolute z-0 text-white/[0.09] -top-8 -right-1 sm:-right-8" />
             <BgIcon icon={Coffee} size={72} className="bottom-6 -left-12 sm:-left-24" />
             <BgIcon icon={Paintbrush} size={66} className="-bottom-2 -right-4 sm:-right-14" />
 
-            {/* Pijltje van bovenaf naar het hoofd (tekent zichzelf) */}
+            {/* Pijltje van de pc naar het hoofd (tekent zichzelf) */}
             <DrawnArrow
-              className="absolute -top-6 -left-2 sm:left-2 w-32 h-20 text-[#A78BFA]/70 z-20 pointer-events-none"
-              viewBox="0 0 160 90"
-              d="M10 14 C 58 2, 108 8, 132 56"
-              head="M116 50 L135 60 L122 34"
+              className="absolute -top-5 -left-12 sm:-left-24 w-44 sm:w-64 h-24 text-[#A78BFA]/70 z-20 pointer-events-none"
+              viewBox="0 0 200 100"
+              d="M8 24 C 74 4, 138 10, 172 60"
+              head="M154 54 L176 64 L162 38"
               delay={0.3}
             />
 
-            {/* Krullend lijntje van het AI-icoon naar Marjolijn (tekent zichzelf) */}
+            {/* Krullend pijltje van het AI-icoon naar het hoofd, op afstand */}
             <DrawnArrow
-              className="absolute top-9 right-7 sm:right-16 w-24 h-24 text-[#A78BFA]/60 z-20 pointer-events-none"
-              viewBox="0 0 110 110"
-              d="M94 12 C 70 20, 98 56, 60 60 C 40 62, 46 86, 22 90"
-              head="M35 82 L18 92 L31 101"
+              className="absolute top-4 -right-1 sm:-right-6 w-20 h-28 text-[#A78BFA]/60 z-20 pointer-events-none"
+              viewBox="0 0 90 120"
+              d="M78 12 C 82 42, 56 40, 42 58 C 32 70, 38 86, 24 98"
+              head="M37 94 L20 100 L30 112"
               delay={0.6}
             />
 
