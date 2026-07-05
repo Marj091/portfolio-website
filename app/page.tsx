@@ -51,8 +51,8 @@ function FacebookIcon({ size = 18, className }: { size?: number; className?: str
 function InDesignIcon({ size = 22, className }: { size?: number; className?: string }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" stroke="currentColor" strokeWidth="1.6" />
-      <text x="12" y="16" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="currentColor" fontFamily="system-ui, sans-serif">
+      <rect x="1.5" y="1.5" width="21" height="21" rx="5" stroke="currentColor" strokeWidth="1.7" />
+      <text x="12" y="16.6" textAnchor="middle" fontSize="12" fontWeight="700" fill="currentColor" fontFamily="system-ui, sans-serif">
         Id
       </text>
     </svg>
@@ -63,14 +63,14 @@ function InDesignIcon({ size = 22, className }: { size?: number; className?: str
 function AiChipIcon({ size = 22, className }: { size?: number; className?: string }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect x="6" y="6" width="12" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="1.7" />
       <path
-        d="M9.5 6V3M14.5 6V3M9.5 21v-3M14.5 21v-3M6 9.5H3M6 14.5H3M21 9.5h-3M21 14.5h-3"
+        d="M9 4V1.4M15 4V1.4M9 22.6V20M15 22.6V20M4 9H1.4M4 15H1.4M22.6 9H20M22.6 15H20"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="1.7"
         strokeLinecap="round"
       />
-      <text x="12" y="15" textAnchor="middle" fontSize="6.5" fontWeight="700" fill="currentColor" fontFamily="system-ui, sans-serif">
+      <text x="12" y="15.2" textAnchor="middle" fontSize="8" fontWeight="700" fill="currentColor" fontFamily="system-ui, sans-serif">
         AI
       </text>
     </svg>
@@ -96,6 +96,7 @@ const projects: {
   tags: string[];
   media: Media[];
   note?: string;
+  zoom?: number;
   body: string;
 }[] = [
   {
@@ -108,6 +109,7 @@ const projects: {
       { type: "video", src: "/projecten/urenregistratie-invoer.mp4", poster: "/projecten/urenregistratie-invoer-vid.jpg" },
       { type: "image", src: "/projecten/urenregistratie-invoer.jpg" },
     ],
+    zoom: 1.6,
     body: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd. De leidinggevende moest alles zelf samenvoegen en uitrekenen om overzicht te krijgen. Ik bouwde een dashboard dat offline werkt, zonder installatie. Met presets voor vaste, terugkerende taken. Teamleden vullen met één druk op de knop hun uren in. De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
   },
   {
@@ -119,6 +121,7 @@ const projects: {
       { type: "image", src: "/projecten/word-indesign.jpg" },
       { type: "image", src: "/projecten/word-indesign-2.jpg" },
     ],
+    zoom: 1.35,
     body: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Zeker bij lange documenten met meerdere tabellen, zoals reglementen. Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts. Hij herkent daarbij het documenttype en de opmaakstijl. Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
   },
   {
@@ -127,6 +130,7 @@ const projects: {
     title: "Financieel dashboard",
     tags: ["Dataverwerking", "Categorisatie", "Dashboard"],
     note: "Cijfers geblurd voor privacy",
+    zoom: 1.22,
     media: [{ type: "image", src: "/projecten/financieel-v2.jpg" }],
     body: "Een bankapp geeft mij niet genoeg inzicht in mijn uitgaven en spaargedrag. Dus bouwde ik mijn eigen dashboard, dat een jaar aan transactiedata verwerkt. Het categoriseert uitgaven automatisch en maakt spaarpotjes bewerkbaar. Resultaat: beter overzicht en betere financiële beslissingen.",
   },
@@ -479,8 +483,8 @@ function Skills() {
             return (
               <Reveal key={s.title} delay={i * 0.09}>
                 <div className="group h-full bg-[#121826] border border-white/10 rounded-2xl p-7 transition-all duration-300 hover:border-[#7C3AED] hover:bg-[#171F2F] hover:-translate-y-1">
-                  <div className="w-11 h-11 rounded-xl bg-[#7C3AED]/12 flex items-center justify-center mb-5">
-                    <Icon size={22} strokeWidth={1.6} className="text-[#A78BFA]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#7C3AED]/12 flex items-center justify-center mb-5">
+                    <Icon size={26} strokeWidth={1.6} className="text-[#A78BFA]" />
                   </div>
                   <h3 className="text-lg font-bold mb-2.5">{s.title}</h3>
                   <p className="text-sm text-[#9AA4B2] leading-relaxed">{s.body}</p>
@@ -499,6 +503,9 @@ function Skills() {
 function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
   const [active, setActive] = useState(0);
   const item = project.media[active];
+  const zoomStyle = project.zoom
+    ? { transform: `scale(${project.zoom})`, transformOrigin: "top center" as const }
+    : undefined;
   return (
     <div>
       <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#121826] transition-transform duration-300 hover:-translate-y-1">
@@ -512,7 +519,8 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
               muted
               loop
               playsInline
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              style={zoomStyle}
+              className="absolute inset-0 w-full h-full object-cover object-top"
             />
           ) : (
             <Image
@@ -521,7 +529,8 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
               alt={project.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              style={zoomStyle}
+              className="object-cover object-top"
             />
           )}
         </div>
