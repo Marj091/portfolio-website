@@ -435,10 +435,10 @@ function Hero() {
 function About() {
   return (
     <section id="over-mij" className="py-24 px-6 border-t border-white/5 overflow-hidden">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-[0.82fr_1.18fr] gap-10 lg:gap-16 items-center">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_1.05fr] gap-10 lg:gap-14 items-center">
         {/* Zijkant-foto links (kijkt naar de tekst) */}
         <Reveal className="order-1">
-          <div className="relative mx-auto md:mx-0 w-56 sm:w-72 md:w-full max-w-xs aspect-[4/5]">
+          <div className="relative mx-auto md:mx-0 w-64 sm:w-80 md:w-full max-w-md aspect-[4/5]">
             <div className="absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 w-[78%] h-[62%] rounded-full bg-[#7C3AED]/16 blur-[70px] pointer-events-none" />
             <Image
               src="/marjolijn-zijkant.png"
@@ -446,6 +446,7 @@ function About() {
               width={720}
               height={900}
               unoptimized
+              priority
               className="absolute inset-0 w-full h-full object-contain object-bottom"
               style={{
                 WebkitMaskImage:
