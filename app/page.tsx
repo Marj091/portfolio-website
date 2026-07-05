@@ -402,7 +402,7 @@ function Hero() {
               className="absolute top-4 -right-1 sm:-right-6 w-20 h-28 text-[#A78BFA]/60 z-20 pointer-events-none"
               viewBox="0 0 90 120"
               d="M78 12 C 82 42, 56 40, 42 58 C 32 70, 38 86, 24 98"
-              head="M37 94 L20 100 L30 112"
+              head="M38 95 L24 98 L29 85"
               delay={0.6}
             />
 
