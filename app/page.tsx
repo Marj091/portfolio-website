@@ -16,7 +16,7 @@ import {
   Monitor,
   Coffee,
   Paintbrush,
-  Palette,
+  BrainCircuit,
   Play,
 } from "lucide-react";
 
@@ -51,7 +51,7 @@ const projects: {
       { type: "video", src: "/projecten/urenregistratie-invoer.mp4", poster: "/projecten/urenregistratie-invoer-vid.jpg" },
       { type: "image", src: "/projecten/urenregistratie-invoer.jpg" },
     ],
-    body: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd, en de leidinggevende had geen overzicht zonder alles handmatig samen te voegen en te rekenen. Ik bouwde een dashboard dat offline werkt, zonder installatie, met presets voor vaste terugkerende taken. Teamleden vullen met één druk op de knop hun uren in. De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
+    body: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd. De leidinggevende moest alles zelf samenvoegen en uitrekenen om overzicht te krijgen. Ik bouwde een dashboard dat offline werkt, zonder installatie. Met presets voor vaste, terugkerende taken. Teamleden vullen met één druk op de knop hun uren in. De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
   },
   {
     id: "word-indesign",
@@ -62,7 +62,7 @@ const projects: {
       { type: "image", src: "/projecten/word-indesign.jpg" },
       { type: "image", src: "/projecten/word-indesign-2.jpg" },
     ],
-    body: "Tabellen uit Word overzetten naar InDesign-opmaak was tijdrovend handwerk, zeker bij lange documenten zoals reglementen met meerdere tabellen. Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts, inclusief herkenning van documenttype en opmaakstijl. Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
+    body: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Zeker bij lange documenten met meerdere tabellen, zoals reglementen. Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts. Hij herkent daarbij het documenttype en de opmaakstijl. Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
   },
   {
     id: "financieel",
@@ -71,7 +71,7 @@ const projects: {
     tags: ["Dataverwerking", "Categorisatie", "Dashboard"],
     note: "Cijfers geblurd voor privacy",
     media: [{ type: "image", src: "/projecten/financieel.jpg" }],
-    body: "Ik wilde beter inzicht in mijn eigen uitgaven en spaargedrag dan wat een bankapp standaard biedt. Ik bouwde een dashboard dat een jaar aan transactiedata verwerkt, uitgaven automatisch categoriseert en spaarpotjes bewerkbaar maakt. Het resultaat is beter overzicht en betere financiële beslissingen.",
+    body: "Een bankapp geeft mij niet genoeg inzicht in mijn uitgaven en spaargedrag. Dus bouwde ik mijn eigen dashboard, dat een jaar aan transactiedata verwerkt. Het categoriseert uitgaven automatisch en maakt spaarpotjes bewerkbaar. Resultaat: beter overzicht en betere financiële beslissingen.",
   },
   {
     id: "maaltijden",
@@ -79,7 +79,7 @@ const projects: {
     title: "Maaltijden selectietool",
     tags: ["Python", "Browserautomatisering", "Voorkeurscoring"],
     media: [{ type: "video", src: "/projecten/maaltijden.mp4", poster: "/projecten/maaltijden.jpg" }],
-    body: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd en leverde niet altijd de beste match op. Ik bouwde een Python-tool die het hele proces automatiseert: via browserautomatisering leest een script alle beschikbare maaltijden uit, een eigen scoringslogica beoordeelt ze op persoonlijke voorkeuren, en de gekozen maaltijden worden automatisch klaargezet. Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
+    body: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd. En het leverde niet altijd de beste match op. Ik bouwde een Python-tool die het hele proces automatiseert. Een script leest via browserautomatisering alle beschikbare maaltijden uit. Een eigen scoringslogica beoordeelt ze op mijn voorkeuren. Daarna worden de gekozen maaltijden automatisch klaargezet. Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
   },
 ];
 
@@ -89,14 +89,14 @@ const cv = [
     role: "Grafisch Vormgever",
     period: "Juli 2021 – heden",
     org: "a.s.r. verzekeringen",
-    body: "Opmaak van complexe documenten binnen de a.s.r.-huisstijl: polisvoorwaarden, brochures, rapportages, PowerPoint-presentaties en invulbare pdf-formulieren. Daarnaast het initiatief genomen om terugkerende productieprocessen te automatiseren met zelfgebouwde tools, waardoor het team sneller en consistenter werkt.",
+    body: "Opmaak van complexe documenten binnen de a.s.r.-huisstijl: polisvoorwaarden, brochures, rapportages, PowerPoint-presentaties en invulbare pdf-formulieren. Daarnaast nam ik het initiatief om terugkerende productieprocessen te automatiseren met zelfgebouwde tools. Daardoor werkt het team sneller en consistenter.",
   },
   {
     icon: Briefcase,
     role: "DTP & Grafische vormgeving",
     period: "2012 – 2021",
     org: "o.a. FHC, Groupcard, Gemeente Leiden, Sanoma, HEMA",
-    body: "Ruim negen jaar ervaring opgebouwd in DTP en grafische vormgeving, aangevuld met een periode als zelfstandig vormgever. Van tijdschriftopmaak en huisstijlontwikkeling tot beleidsdocumenten: een brede basis in zowel print als digitaal.",
+    body: "Ruim negen jaar ervaring opgebouwd in DTP en grafische vormgeving. Aangevuld met een periode als zelfstandig vormgever. Van tijdschriftopmaak en huisstijlontwikkeling tot beleidsdocumenten: een brede basis in zowel print als digitaal.",
   },
   {
     icon: GraduationCap,
@@ -107,8 +107,17 @@ const cv = [
   },
 ];
 
+// Percentages zijn een eerste inschatting — pas ze gerust aan naar jouw gevoel
+const skills = [
+  { label: "Adobe InDesign", value: 95 },
+  { label: "Illustrator & Photoshop", value: 85 },
+  { label: "AI & Automatisering", value: 80 },
+  { label: "JavaScript & Python", value: 70 },
+];
+
 const navLinks = [
   { label: "Over mij", href: "#over-mij" },
+  { label: "Vaardigheden", href: "#vaardigheden" },
   { label: "Projecten", href: "#projecten" },
   { label: "CV", href: "#cv" },
   { label: "Contact", href: "#contact" },
@@ -164,6 +173,83 @@ function Typewriter() {
 
 function BgIcon({ icon: Icon, className, size = 62 }: { icon: typeof Monitor; className: string; size?: number }) {
   return <Icon className={`absolute z-0 text-white/[0.09] ${className}`} size={size} strokeWidth={1} />;
+}
+
+// Lijntje/pijltje dat zichzelf "tekent" wanneer het in beeld komt
+function DrawnArrow({
+  className,
+  viewBox,
+  d,
+  head,
+  delay = 0,
+}: {
+  className: string;
+  viewBox: string;
+  d: string;
+  head: string;
+  delay?: number;
+}) {
+  return (
+    <svg className={className} viewBox={viewBox} fill="none" aria-hidden>
+      <motion.path
+        d={d}
+        stroke="currentColor"
+        strokeWidth={2.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1, delay, ease: "easeInOut" }}
+      />
+      <motion.path
+        d={head}
+        stroke="currentColor"
+        strokeWidth={2.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.35, delay: delay + 1.0, ease: "easeOut" }}
+      />
+    </svg>
+  );
+}
+
+function SkillRing({ label, value, delay = 0 }: { label: string; value: number; delay?: number }) {
+  const r = 52;
+  const c = 2 * Math.PI * r;
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative w-28 h-28 sm:w-32 sm:h-32">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r={r} stroke="rgba(255,255,255,0.08)" strokeWidth="8" fill="none" />
+          <motion.circle
+            cx="60"
+            cy="60"
+            r={r}
+            stroke="#7C3AED"
+            strokeWidth="8"
+            fill="none"
+            strokeLinecap="round"
+            strokeDasharray={c}
+            initial={{ strokeDashoffset: c }}
+            whileInView={{ strokeDashoffset: c * (1 - value / 100) }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.3, delay, ease: "easeOut" }}
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-2xl font-extrabold">
+            {value}
+            <span className="text-sm text-[#9AA4B2]">%</span>
+          </span>
+        </div>
+      </div>
+      <p className="mt-4 text-xs sm:text-sm font-semibold uppercase tracking-wide text-[#C7CEDB] text-center">{label}</p>
+    </div>
+  );
 }
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
@@ -251,25 +337,27 @@ function Hero() {
 
             {/* Speels verspreide, kale achtergrond-icoontjes, ver uiteen */}
             <BgIcon icon={Monitor} size={70} className="top-2 -left-16 sm:-left-32" />
-            <BgIcon icon={Palette} size={64} className="-top-6 right-6 sm:right-16" />
+            <BgIcon icon={BrainCircuit} size={64} className="-top-6 right-6 sm:right-16" />
             <BgIcon icon={Coffee} size={72} className="bottom-6 -left-12 sm:-left-24" />
             <BgIcon icon={Paintbrush} size={66} className="-bottom-2 -right-4 sm:-right-14" />
 
-            {/* Krullend lijntje naar Marjolijn toe */}
-            <svg
-              className="absolute bottom-24 -left-6 sm:-left-16 w-24 h-20 text-[#A78BFA]/30 z-0 pointer-events-none"
-              viewBox="0 0 120 100"
-              fill="none"
-            >
-              <path
-                d="M6 92 C 34 96, 30 60, 54 54 C 74 49, 70 22, 96 20"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeDasharray="1 8"
-              />
-              <path d="M88 12 L100 18 L92 29" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            {/* Pijltje van bovenaf naar het hoofd (tekent zichzelf) */}
+            <DrawnArrow
+              className="absolute -top-6 -left-2 sm:left-2 w-32 h-20 text-[#A78BFA]/70 z-20 pointer-events-none"
+              viewBox="0 0 160 90"
+              d="M10 14 C 58 2, 108 8, 132 56"
+              head="M116 50 L135 60 L122 34"
+              delay={0.3}
+            />
+
+            {/* Krullend lijntje van onderaf naar Marjolijn (tekent zichzelf) */}
+            <DrawnArrow
+              className="absolute bottom-20 -left-5 sm:-left-14 w-24 h-24 text-[#A78BFA]/55 z-20 pointer-events-none"
+              viewBox="0 0 110 110"
+              d="M8 98 C 46 106, 18 58, 52 52 C 74 48, 66 24, 92 22"
+              head="M79 18 L95 20 L86 34"
+              delay={0.6}
+            />
 
             {/* Foto, zonder kader, randen vervagen zacht in de achtergrond (radiaal) */}
             <Image
@@ -307,20 +395,42 @@ function About() {
           <Reveal delay={0.1}>
             <div className="space-y-5 text-[#C7CEDB] text-base sm:text-lg leading-relaxed">
               <p>
-                Ik ben Marjolijn de Vries, grafisch vormgever bij a.s.r. verzekeringen. Sinds 2012
-                werk ik in DTP en grafische vormgeving, de laatste jaren binnen Corporate Communicatie.
-                Daar maak ik complexe documenten op binnen de huisstijl: polisvoorwaarden, brochures,
-                rapportages en formulieren.
+                Ik ben Marjolijn, grafisch vormgever bij a.s.r. verzekeringen. Sinds 2012 werk ik in
+                DTP en grafische vormgeving. Nu doe ik dat binnen het in-house designteam van Corporate
+                Communicatie, met zeven vormgevers. Daar maak ik complexe documenten op binnen de
+                huisstijl: polisvoorwaarden, brochures, rapportages en formulieren.
               </p>
               <p>
                 Naast dat vormgevingswerk ben ik zelf gaan bouwen. Repeterende taken in mijn team
-                kostten onnodig veel tijd, dus ontwikkelde ik browser-based tools die dat werk
-                automatiseren. Zo bouwde ik een urenregistratiesysteem dat het hele team dagelijks
-                gebruikt, en een script dat Word-tabellen automatisch omzet naar InDesign-opmaak.
-                Geen kant-en-klare software, maar zelf gebouwd en getest op echte documenten uit mijn werk.
+                kostten onnodig veel tijd. Dus loste ik dat zelf op. Ik bouwde browser-based tools die
+                dat werk automatiseren. Een urenregistratiesysteem dat het hele team dagelijks gebruikt.
+                En een script dat Word-tabellen omzet naar InDesign-opmaak. Geen kant-en-klare software,
+                gewoon zelf gebouwd en getest op echte documenten uit mijn werk.
               </p>
             </div>
           </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Vaardigheden ────────────────────────────────────────────────────────────
+
+function Skills() {
+  return (
+    <section id="vaardigheden" className="py-24 px-6 border-t border-white/5">
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl">
+          <Reveal>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Vaardigheden</p>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Waar ik sterk in ben.</h2>
+          </Reveal>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 mt-14">
+          {skills.map((s, i) => (
+            <SkillRing key={s.label} label={s.label} value={s.value} delay={i * 0.12} />
+          ))}
         </div>
       </div>
     </section>
@@ -395,7 +505,11 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
   const Icon = project.icon;
   return (
     <Reveal>
-      <div className="grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
+      <div
+        className={`grid ${
+          reversed ? "md:grid-cols-[1fr_1.25fr]" : "md:grid-cols-[1.25fr_1fr]"
+        } gap-8 lg:gap-14 items-center`}
+      >
         <div className={reversed ? "md:order-2" : ""}>
           <ProjectMedia project={project} />
         </div>
@@ -426,7 +540,7 @@ function Projects() {
           <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Projecten</p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Zelfgebouwde tools.</h2>
           <p className="text-[#9AA4B2] max-w-2xl mb-16">
-            Elk project ontstond uit een echt probleem in mijn werk of dagelijks leven.
+            Elk project lost een probleem op dat ik zelf tegenkwam, op werk of thuis.
           </p>
         </Reveal>
         <div className="space-y-20 lg:space-y-28">
@@ -567,6 +681,7 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Skills />
         <Projects />
         <CV />
         <Contact />
