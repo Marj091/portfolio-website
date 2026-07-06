@@ -97,6 +97,7 @@ const projects: {
   media: Media[];
   note?: string;
   zoom?: number;
+  fit?: "cover" | "contain";
   body: string;
 }[] = [
   {
@@ -130,6 +131,7 @@ const projects: {
     icon: BarChart3,
     title: "eMood narrowcasting script",
     tags: ["Illustrator-scripting", "CSV-verwerking", "Automatisering"],
+    fit: "contain",
     media: [
       { type: "video", src: "/projecten/emood.mp4", poster: "/projecten/emood-poster.jpg" },
       { type: "image", src: "/projecten/emood.jpg" },
@@ -451,20 +453,17 @@ function About() {
         {/* Zijkant-foto links (kijkt naar de tekst) */}
         <Reveal className="order-1">
           <div className="relative mx-auto md:mx-0 w-64 sm:w-80 md:w-full max-w-md aspect-[4/5]">
-            <div className="absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 w-[78%] h-[62%] rounded-full bg-[#7C3AED]/16 blur-[70px] pointer-events-none" />
             <Image
-              src="/marjolijn-zijkant.png"
-              alt="Marjolijn de Vries, zijaanzicht"
-              width={720}
-              height={900}
+              src="/marjolijn-illustratie.jpg"
+              alt="Illustratie van Marjolijn de Vries met design- en code-elementen"
+              width={1100}
+              height={1375}
               unoptimized
               priority
-              className="absolute inset-0 w-full h-full object-contain object-bottom"
+              className="absolute inset-0 w-full h-full object-cover"
               style={{
-                WebkitMaskImage:
-                  "radial-gradient(66% 74% at 52% 42%, #000 48%, rgba(0,0,0,0.2) 80%, transparent 100%)",
-                maskImage:
-                  "radial-gradient(66% 74% at 52% 42%, #000 48%, rgba(0,0,0,0.2) 80%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(92% 94% at 50% 48%, #000 86%, transparent 100%)",
+                maskImage: "radial-gradient(92% 94% at 50% 48%, #000 86%, transparent 100%)",
               }}
             />
           </div>
@@ -542,6 +541,7 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
   const zoomStyle = project.zoom
     ? { transform: `scale(${project.zoom})`, transformOrigin: "top center" as const }
     : undefined;
+  const fitClass = project.fit === "contain" ? "object-contain" : "object-cover object-top";
   return (
     <div>
       <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#121826] transition-transform duration-300 hover:-translate-y-1">
@@ -556,7 +556,7 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
               loop
               playsInline
               style={zoomStyle}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className={`absolute inset-0 w-full h-full ${fitClass}`}
             />
           ) : (
             <Image
@@ -566,7 +566,7 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               style={zoomStyle}
-              className="object-cover object-top"
+              className={fitClass}
             />
           )}
         </div>
