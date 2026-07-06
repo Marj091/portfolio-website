@@ -11,6 +11,7 @@ import {
   Clock,
   FileText,
   Wallet,
+  BarChart3,
   UtensilsCrossed,
   ShieldCheck,
   Monitor,
@@ -117,11 +118,23 @@ const projects: {
     title: "Word → InDesign tabelconverter",
     tags: ["Automatisering", "InDesign-scripting", "Documentherkenning"],
     media: [
+      { type: "video", src: "/projecten/word-video.mp4", poster: "/projecten/word-indesign.jpg" },
       { type: "image", src: "/projecten/word-indesign.jpg" },
       { type: "image", src: "/projecten/word-indesign-2.jpg" },
     ],
     zoom: 1.35,
     body: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Zeker bij lange documenten met meerdere tabellen, zoals reglementen. Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts. Hij herkent daarbij het documenttype en de opmaakstijl. Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
+  },
+  {
+    id: "emood",
+    icon: BarChart3,
+    title: "eMood narrowcasting script",
+    tags: ["Illustrator-scripting", "CSV-verwerking", "Automatisering"],
+    media: [
+      { type: "video", src: "/projecten/emood.mp4", poster: "/projecten/emood-poster.jpg" },
+      { type: "image", src: "/projecten/emood.jpg" },
+    ],
+    body: "De grafieken voor de interne narrowcasting-schermen werden handmatig bijgewerkt in Illustrator. Dat gebeurde telkens opnieuw bij elke nieuwe dataset. Ik bouwde een script dat CSV-data automatisch omzet naar bijgewerkte staafdiagrammen. Geen handmatig hertekenen meer nodig. Eerder kostte dit 20 tot 25 minuten. Nu kost het nog maar 5 tot 10 minuten.",
   },
   {
     id: "financieel",
