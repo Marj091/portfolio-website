@@ -461,10 +461,11 @@ function About() {
               unoptimized
               priority
               className="absolute inset-0 w-full h-full object-cover"
-              style={{
-                WebkitMaskImage: "radial-gradient(84% 86% at 50% 50%, #000 62%, transparent 100%)",
-                maskImage: "radial-gradient(84% 86% at 50% 50%, #000 62%, transparent 100%)",
-              }}
+            />
+            {/* Zachte rand-fade naar de achtergrondkleur, gelijkmatig op alle randen */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ boxShadow: "inset 0 0 40px 14px #080B12, inset 0 0 90px 55px #080B12" }}
             />
           </div>
         </Reveal>
