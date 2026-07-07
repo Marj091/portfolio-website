@@ -454,16 +454,16 @@ function About() {
         <Reveal className="order-1">
           <div className="relative mx-auto md:mx-0 w-64 sm:w-80 md:w-full max-w-md aspect-[4/5]">
             <Image
-              src="/marjolijn-illustratie.jpg"
-              alt="Illustratie van Marjolijn de Vries met design- en code-elementen"
+              src="/marjolijn-bureau.jpg"
+              alt="Illustratie van Marjolijns werkplek met design- en code-elementen"
               width={1100}
               height={1375}
               unoptimized
               priority
               className="absolute inset-0 w-full h-full object-cover"
               style={{
-                WebkitMaskImage: "radial-gradient(92% 94% at 50% 48%, #000 86%, transparent 100%)",
-                maskImage: "radial-gradient(92% 94% at 50% 48%, #000 86%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(84% 86% at 50% 50%, #000 62%, transparent 100%)",
+                maskImage: "radial-gradient(84% 86% at 50% 50%, #000 62%, transparent 100%)",
               }}
             />
           </div>
@@ -722,9 +722,9 @@ function Contact() {
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-start">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Contact</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Samenwerken of sparren?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Vragen of interesse in mijn werk?</h2>
           <p className="text-[#9AA4B2] leading-relaxed max-w-sm mb-8">
-            Heb je een project waar ik bij kan helpen, of ben je benieuwd naar mijn werk? Stuur gerust een bericht.
+            Stuur gerust een bericht, ik hoor graag van je.
           </p>
           <a href="mailto:marjolijndevries03@gmail.com" className="inline-flex items-center gap-2 text-[#C7CEDB] hover:text-[#A78BFA] transition-colors font-medium">
             <Mail size={18} />
