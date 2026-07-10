@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -14,6 +14,7 @@ import {
   BarChart3,
   UtensilsCrossed,
   ShieldCheck,
+  Check,
   Monitor,
   Coffee,
   Paintbrush,
@@ -98,7 +99,10 @@ const projects: {
   note?: string;
   zoom?: number;
   fit?: "cover" | "contain";
-  body: string;
+  badges: string[];
+  problem: string;
+  solution: string;
+  result: string;
 }[] = [
   {
     id: "urenregistratie",
@@ -111,7 +115,10 @@ const projects: {
       { type: "image", src: "/projecten/urenregistratie-invoer.jpg" },
     ],
     zoom: 1.6,
-    body: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd. De leidinggevende moest alles zelf samenvoegen en uitrekenen om overzicht te krijgen. Ik bouwde een dashboard dat offline werkt, zonder installatie. Met presets voor vaste, terugkerende taken. Teamleden vullen met één druk op de knop hun uren in. De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
+    badges: ["Dagelijks gebruikt", "Offline tool", "Teamdashboard"],
+    problem: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd. De leidinggevende moest alles zelf samenvoegen en uitrekenen om overzicht te krijgen.",
+    solution: "Ik bouwde een dashboard dat offline werkt, zonder installatie. Met presets voor vaste, terugkerende taken. Teamleden vullen met één druk op de knop hun uren in.",
+    result: "De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
   },
   {
     id: "word-indesign",
@@ -124,7 +131,10 @@ const projects: {
       { type: "image", src: "/projecten/word-indesign-2.jpg" },
     ],
     zoom: 1.35,
-    body: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Zeker bij lange documenten met meerdere tabellen, zoals reglementen. Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts. Hij herkent daarbij het documenttype en de opmaakstijl. Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
+    badges: ["Handwerk → automatisch", "Herkent documenttype"],
+    problem: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Zeker bij lange documenten met meerdere tabellen, zoals reglementen.",
+    solution: "Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts. Hij herkent daarbij het documenttype en de opmaakstijl.",
+    result: "Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
   },
   {
     id: "emood",
@@ -136,7 +146,10 @@ const projects: {
       { type: "video", src: "/projecten/emood.mp4", poster: "/projecten/emood-poster.jpg" },
       { type: "image", src: "/projecten/emood.jpg" },
     ],
-    body: "De grafieken voor de interne narrowcasting-schermen werden handmatig bijgewerkt in Illustrator. Dat gebeurde telkens opnieuw bij elke nieuwe dataset. Ik bouwde een script dat CSV-data automatisch omzet naar bijgewerkte staafdiagrammen. Geen handmatig hertekenen meer nodig. Eerder kostte dit 20 tot 25 minuten. Nu kost het nog maar 5 tot 10 minuten.",
+    badges: ["20-25 min → 5-10 min", "Illustrator-script"],
+    problem: "De grafieken voor de interne narrowcasting-schermen werden handmatig bijgewerkt in Illustrator. Dat gebeurde telkens opnieuw bij elke nieuwe dataset.",
+    solution: "Ik bouwde een script dat CSV-data automatisch omzet naar bijgewerkte staafdiagrammen. Geen handmatig hertekenen meer nodig.",
+    result: "Eerder kostte dit 20 tot 25 minuten. Nu kost het nog maar 5 tot 10 minuten.",
   },
   {
     id: "financieel",
@@ -146,7 +159,10 @@ const projects: {
     note: "Cijfers geblurd voor privacy",
     zoom: 1.22,
     media: [{ type: "image", src: "/projecten/financieel-v2.jpg" }],
-    body: "Een bankapp geeft mij niet genoeg inzicht in mijn uitgaven en spaargedrag. Dus bouwde ik mijn eigen dashboard, dat een jaar aan transactiedata verwerkt. Het categoriseert uitgaven automatisch en maakt spaarpotjes bewerkbaar. Resultaat: beter overzicht en betere financiële beslissingen.",
+    badges: ["1 jaar transactiedata", "Auto-categorisatie"],
+    problem: "Een bankapp geeft mij niet genoeg inzicht in mijn uitgaven en spaargedrag.",
+    solution: "Dus bouwde ik mijn eigen dashboard, dat een jaar aan transactiedata verwerkt. Het categoriseert uitgaven automatisch en maakt spaarpotjes bewerkbaar.",
+    result: "Beter overzicht en betere financiële beslissingen.",
   },
   {
     id: "maaltijden",
@@ -154,7 +170,10 @@ const projects: {
     title: "Maaltijden selectietool",
     tags: ["Python", "Browserautomatisering", "Voorkeurscoring"],
     media: [{ type: "image", src: "/projecten/maaltijden.jpg" }],
-    body: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd. En het leverde niet altijd de beste match op. Ik bouwde een Python-tool die het hele proces automatiseert. Een script leest via browserautomatisering alle beschikbare maaltijden uit. Een eigen scoringslogica beoordeelt ze op mijn voorkeuren. Daarna worden de gekozen maaltijden automatisch klaargezet. Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
+    badges: ["Volledig automatisch", "Eigen scoringslogica"],
+    problem: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd. En het leverde niet altijd de beste match op.",
+    solution: "Ik bouwde een Python-tool die het hele proces automatiseert. Een script leest via browserautomatisering alle beschikbare maaltijden uit. Een eigen scoringslogica beoordeelt ze op mijn voorkeuren. Daarna worden de gekozen maaltijden automatisch klaargezet.",
+    result: "Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
   },
 ];
 
@@ -536,69 +555,152 @@ function Skills() {
 
 // ─── Projecten ───────────────────────────────────────────────────────────────
 
+// Zorgt dat er nooit twee projectvideo's tegelijk spelen
+let activePortfolioVideo: HTMLVideoElement | null = null;
+
+function useReducedMotion() {
+  const [reduce, setReduce] = useState(false);
+  useEffect(() => {
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduce(m.matches);
+    const handler = () => setReduce(m.matches);
+    m.addEventListener("change", handler);
+    return () => m.removeEventListener("change", handler);
+  }, []);
+  return reduce;
+}
+
 function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
   const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+  const reduce = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const item = project.media[active];
+
+  useEffect(() => {
+    setCanHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+  useEffect(() => setPlaying(false), [active]);
+  useEffect(
+    () => () => {
+      if (activePortfolioVideo === videoRef.current) activePortfolioVideo = null;
+    },
+    []
+  );
+
   const zoomStyle = project.zoom
     ? { transform: `scale(${project.zoom})`, transformOrigin: "top center" as const }
     : undefined;
   const fitClass = project.fit === "contain" ? "object-contain" : "object-cover object-top";
+
+  const playVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (activePortfolioVideo && activePortfolioVideo !== v) activePortfolioVideo.pause();
+    activePortfolioVideo = v;
+    v.play().then(() => setPlaying(true)).catch(() => {});
+  };
+  const pauseVideo = () => {
+    videoRef.current?.pause();
+    setPlaying(false);
+  };
+
   return (
     <div>
-      <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#121826] transition-transform duration-300 hover:-translate-y-1">
-        <div className="aspect-[16/10] relative overflow-hidden">
+      {/* App/browser-mockup */}
+      <div className="group rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0d1320] transition-transform duration-300 hover:-translate-y-1">
+        {/* Chrome-balk */}
+        <div className="flex items-center gap-2 h-9 px-4 border-b border-white/[0.06] bg-[#141b2a]">
+          <span className="flex gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+          </span>
+          <span className="ml-2 hidden sm:block flex-1 max-w-[70%] h-4 rounded bg-white/[0.04] border border-white/[0.06]" />
+        </div>
+        {/* Beeld */}
+        <div
+          className="relative aspect-[16/10] overflow-hidden bg-[#0a0f18]"
+          onMouseEnter={() => {
+            if (item.type === "video" && canHover && !reduce) playVideo();
+          }}
+          onMouseLeave={() => {
+            if (item.type === "video" && canHover && !reduce) pauseVideo();
+          }}
+        >
           {item.type === "video" ? (
-            <video
-              key={item.src}
-              src={item.src}
-              poster={item.poster}
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={zoomStyle}
-              className={`absolute inset-0 w-full h-full ${fitClass}`}
-            />
+            <>
+              <video
+                key={item.src}
+                ref={videoRef}
+                src={item.src}
+                poster={item.poster}
+                muted
+                loop
+                playsInline
+                preload="none"
+                style={zoomStyle}
+                onClick={() => (playing ? pauseVideo() : playVideo())}
+                className={`absolute inset-0 w-full h-full cursor-pointer ${fitClass}`}
+              />
+              {!playing && (
+                <button
+                  onClick={playVideo}
+                  aria-label={`Video van ${project.title} afspelen`}
+                  className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/20"
+                >
+                  <span className="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center shadow-lg shadow-black/40">
+                    <Play size={22} className="text-white translate-x-[2px]" fill="white" />
+                  </span>
+                </button>
+              )}
+            </>
           ) : (
             <Image
               key={item.src}
               src={item.src}
               alt={project.title}
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 55vw"
               style={zoomStyle}
               className={fitClass}
             />
           )}
+          {project.note && (
+            <span className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-white/80 font-medium">
+              <ShieldCheck size={13} /> {project.note}
+            </span>
+          )}
         </div>
-        {project.note && (
-          <span className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-white/80 font-medium">
-            <ShieldCheck size={13} /> {project.note}
-          </span>
-        )}
       </div>
 
+      {/* Subtiele stippen i.p.v. thumbnailrij */}
       {project.media.length > 1 && (
-        <div className="flex gap-2.5 mt-3">
+        <div className="flex items-center gap-2 mt-4">
           {project.media.map((m, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
               aria-label={`Beeld ${i + 1} van ${project.title}`}
-              className={`relative w-[74px] h-[50px] rounded-lg overflow-hidden border transition ${
-                i === active ? "border-[#7C3AED] ring-1 ring-[#7C3AED]" : "border-white/10 opacity-55 hover:opacity-90"
+              className={`h-2 rounded-full transition-all ${
+                i === active ? "w-6 bg-[#7C3AED]" : "w-2 bg-white/20 hover:bg-white/40"
               }`}
-            >
-              <Image src={m.poster ?? m.src} alt="" fill sizes="74px" className="object-cover object-top" />
-              {m.type === "video" && (
-                <span className="absolute inset-0 flex items-center justify-center bg-black/25">
-                  <Play size={13} className="text-white" fill="white" />
-                </span>
-              )}
-            </button>
+            />
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function PorBlock({ label, text, accent = false }: { label: string; text: string; accent?: boolean }) {
+  return (
+    <div>
+      <p className={`text-[11px] uppercase tracking-[0.18em] font-bold mb-1.5 ${accent ? "text-[#A78BFA]" : "text-[#5E6A7D]"}`}>
+        {label}
+      </p>
+      <p className="text-[#9AA4B2] leading-relaxed text-[15px]">{text}</p>
     </div>
   );
 }
@@ -621,10 +723,27 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
             <Icon size={24} className="text-[#A78BFA]" />
           </div>
           <h3 className="text-2xl font-bold tracking-tight mb-4">{project.title}</h3>
-          <p className="text-[#9AA4B2] leading-relaxed mb-6">{project.body}</p>
+          {/* Resultaat-badges */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.badges.map((b) => (
+              <span
+                key={b}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#7C3AED]/15 border border-[#7C3AED]/30 text-[#C4B5FD]"
+              >
+                <Check size={13} strokeWidth={2.5} /> {b}
+              </span>
+            ))}
+          </div>
+          {/* Probleem / Oplossing / Resultaat */}
+          <div className="space-y-4 mb-6">
+            <PorBlock label="Probleem" text={project.problem} />
+            <PorBlock label="Oplossing" text={project.solution} />
+            <PorBlock label="Resultaat" text={project.result} accent />
+          </div>
+          {/* Techniek */}
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
-              <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#C7CEDB] font-medium">
+              <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#9AA4B2] font-medium">
                 {tag}
               </span>
             ))}
