@@ -19,6 +19,8 @@ import {
   Coffee,
   Paintbrush,
   Play,
+  ChevronLeft,
+  ChevronRight,
   FilePen,
   Code2,
 } from "lucide-react";
@@ -82,10 +84,11 @@ function AiChipIcon({ size = 22, className }: { size?: number; className?: strin
 
 const heroChips = [
   "Adobe InDesign",
+  "ExtendScript",
   "JavaScript",
   "Python",
   "Browserautomatisering",
-  "ExtendScript",
+  "AI-workflows",
 ];
 
 type Media = { type: "image" | "video"; src: string; poster?: string };
@@ -94,7 +97,8 @@ const projects: {
   id: string;
   icon: typeof Clock;
   title: string;
-  tags: string[];
+  intro: string;
+  builtWith: string;
   media: Media[];
   note?: string;
   zoom?: number;
@@ -108,89 +112,94 @@ const projects: {
     id: "urenregistratie",
     icon: Clock,
     title: "Urenregistratietool",
-    tags: ["Offline dashboard", "Presets", "Teamoverzicht"],
+    intro: "Een offline teamdashboard voor snellere en overzichtelijke urenregistratie.",
+    builtWith: "JavaScript · CSV-verwerking · UX/UI-design · Dashboarddesign · Procesanalyse",
     media: [
       { type: "video", src: "/projecten/urenregistratie.mp4", poster: "/projecten/urenregistratie.jpg" },
       { type: "video", src: "/projecten/urenregistratie-invoer.mp4", poster: "/projecten/urenregistratie-invoer-vid.jpg" },
       { type: "image", src: "/projecten/urenregistratie-invoer.jpg" },
     ],
     zoom: 1.6,
-    badges: ["Dagelijks gebruikt", "Offline tool", "Teamdashboard"],
-    problem: "Handmatige tijdregistratie in het team was foutgevoelig en kostte tijd. De leidinggevende moest alles zelf samenvoegen en uitrekenen om overzicht te krijgen.",
-    solution: "Ik bouwde een dashboard dat offline werkt, zonder installatie. Met presets voor vaste, terugkerende taken. Teamleden vullen met één druk op de knop hun uren in.",
-    result: "De leidinggevende heeft nu één centraal dashboard met totaaloverzichten en grafieken. Het hele team gebruikt de tool inmiddels dagelijks.",
+    badges: ["Dagelijks gebruikt", "Volledig offline", "Gebouwd voor het team"],
+    problem: "Handmatige tijdregistratie binnen het team was foutgevoelig en kostte de leidinggevende veel tijd. De losse invoer moest handmatig worden samengevoegd en uitgerekend om overzicht te krijgen.",
+    solution: "Ik bouwde een dashboard dat volledig offline en zonder installatie werkt. Met presets voor terugkerende taken registreren teamleden hun uren snel en consequent.",
+    result: "De leidinggevende beschikt nu over één centraal dashboard met totalen en grafieken. De tool wordt dagelijks door het hele team gebruikt.",
   },
   {
     id: "word-indesign",
     icon: FileText,
     title: "Word → InDesign tabelconverter",
-    tags: ["Automatisering", "InDesign-scripting", "Documentherkenning"],
+    intro: "Een praktisch script dat Word-tabellen omzet naar bruikbare InDesign-opmaak.",
+    builtWith: "Adobe InDesign · ExtendScript · JavaScript · Documentanalyse · Stijlautomatisering · Procesoptimalisatie",
     media: [
       { type: "video", src: "/projecten/word-video.mp4", poster: "/projecten/word-indesign.jpg" },
       { type: "image", src: "/projecten/word-indesign.jpg" },
       { type: "image", src: "/projecten/word-indesign-2.jpg" },
     ],
     zoom: 1.35,
-    badges: ["Handwerk → automatisch", "Herkent documenttype"],
-    problem: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Zeker bij lange documenten met meerdere tabellen, zoals reglementen.",
-    solution: "Ik ontwikkelde een tool die Word-tabellen automatisch omzet naar kant-en-klare InDesign-scripts. Hij herkent daarbij het documenttype en de opmaakstijl.",
-    result: "Getest en toegepast op grote, complexe reglementendocumenten met meerdere tabellen per bestand.",
+    badges: ["Handwerk geautomatiseerd", "Herkent documenttypen", "Getest met echte documenten"],
+    problem: "Tabellen uit Word overzetten naar InDesign was tijdrovend handwerk. Vooral lange documenten, zoals reglementen met meerdere tabellen, vroegen veel terugkerende opmaak.",
+    solution: "Ik ontwikkelde een tool die Word-tabellen omzet naar kant-en-klare InDesign-scripts. De tool herkent het documenttype en koppelt de juiste tabel- en opmaakstijlen.",
+    result: "Getest en toegepast op grote reglementendocumenten met meerdere tabellen. Hierdoor zijn minder handmatige opmaakstappen nodig en worden tabellen consistenter verwerkt.",
   },
   {
     id: "emood",
     icon: BarChart3,
     title: "eMood narrowcasting script",
-    tags: ["Illustrator-scripting", "CSV-verwerking", "Automatisering"],
+    intro: "Een Illustrator-script dat CSV-data automatisch omzet naar bijgewerkte staafdiagrammen.",
+    builtWith: "Adobe Illustrator · ExtendScript · CSV-verwerking · Datavisualisatie · Automatisering",
     fit: "contain",
     media: [
       { type: "video", src: "/projecten/emood.mp4", poster: "/projecten/emood-poster.jpg" },
       { type: "image", src: "/projecten/emood.jpg" },
     ],
-    badges: ["20-25 min → 5-10 min", "Illustrator-script"],
-    problem: "De grafieken voor de interne narrowcasting-schermen werden handmatig bijgewerkt in Illustrator. Dat gebeurde telkens opnieuw bij elke nieuwe dataset.",
-    solution: "Ik bouwde een script dat CSV-data automatisch omzet naar bijgewerkte staafdiagrammen. Geen handmatig hertekenen meer nodig.",
-    result: "Eerder kostte dit 20 tot 25 minuten. Nu kost het nog maar 5 tot 10 minuten.",
+    badges: ["20–25 min → 5–10 min", "CSV naar Illustrator", "Herhaalbaar proces"],
+    problem: "De grafieken voor de interne narrowcastingschermen werden handmatig bijgewerkt in Illustrator. Bij iedere nieuwe dataset moesten de grafieken opnieuw worden opgebouwd.",
+    solution: "Ik bouwde een script dat CSV-data automatisch omzet naar bijgewerkte staafdiagrammen. Hierdoor is handmatig hertekenen niet meer nodig.",
+    result: "Het bijwerken duurde eerst 20 tot 25 minuten per dataset. Met het script is dat teruggebracht naar 5 tot 10 minuten.",
   },
   {
     id: "financieel",
     icon: Wallet,
     title: "Financieel dashboard",
-    tags: ["Dataverwerking", "Categorisatie", "Dashboard"],
+    intro: "Een persoonlijk dashboard voor inzicht in uitgaven en spaardoelen.",
+    builtWith: "Dataverwerking · Categorisatielogica · Dashboarddesign · Datavisualisatie",
     note: "Cijfers geblurd voor privacy",
     zoom: 1.22,
     media: [{ type: "image", src: "/projecten/financieel-v2.jpg" }],
-    badges: ["1 jaar transactiedata", "Auto-categorisatie"],
-    problem: "Een bankapp geeft mij niet genoeg inzicht in mijn uitgaven en spaargedrag.",
-    solution: "Dus bouwde ik mijn eigen dashboard, dat een jaar aan transactiedata verwerkt. Het categoriseert uitgaven automatisch en maakt spaarpotjes bewerkbaar.",
-    result: "Beter overzicht en betere financiële beslissingen.",
+    badges: ["1 jaar transactiedata", "Automatische categorisatie", "Eigen spaardoelen"],
+    problem: "Mijn bankapp gaf onvoldoende inzicht in waar mijn geld naartoe ging en hoe mijn spaardoelen zich ontwikkelden.",
+    solution: "Daarom bouwde ik een dashboard dat een jaar aan transacties verwerkt, uitgaven automatisch categoriseert en spaardoelen bewerkbaar maakt.",
+    result: "Ik kan uitgaven per categorie en periode vergelijken, afwijkingen sneller herkennen en mijn voortgang per spaardoel op één plek volgen.",
   },
   {
     id: "maaltijden",
     icon: UtensilsCrossed,
     title: "Maaltijden selectietool",
-    tags: ["Python", "Browserautomatisering", "Voorkeurscoring"],
+    intro: "Een geautomatiseerde maaltijdselectie op basis van persoonlijke voorkeuren.",
+    builtWith: "Python · Browserautomatisering · Voorkeurslogica · Dashboarddesign",
     media: [{ type: "image", src: "/projecten/maaltijden.jpg" }],
-    badges: ["Volledig automatisch", "Eigen scoringslogica"],
-    problem: "Elke week opnieuw maaltijden uitzoeken bij een online maaltijdservice kostte tijd. En het leverde niet altijd de beste match op.",
-    solution: "Ik bouwde een Python-tool die het hele proces automatiseert. Een script leest via browserautomatisering alle beschikbare maaltijden uit. Een eigen scoringslogica beoordeelt ze op mijn voorkeuren. Daarna worden de gekozen maaltijden automatisch klaargezet.",
-    result: "Een zelfgebouwd dashboard maakt het geheel overzichtelijk bedienbaar.",
+    badges: ["Volledig automatisch", "Eigen scoringsmodel", "Selecteert op voorkeuren"],
+    problem: "Iedere week opnieuw maaltijden selecteren bij een online maaltijdservice kostte tijd en leverde niet altijd de beste keuzes op.",
+    solution: "Ik bouwde een Python-tool die het volledige selectieproces automatiseert. Browserautomatisering leest de beschikbare maaltijden uit, waarna een eigen scoringsmodel ze beoordeelt op mijn voorkeuren. De beste opties worden vervolgens automatisch klaargezet.",
+    result: "De wekelijkse selectie verloopt nu vrijwel automatisch. Ik hoef niet meer alle maaltijden handmatig te vergelijken en krijg voorstellen die beter aansluiten op mijn voorkeuren.",
   },
 ];
 
 const cv = [
   {
     icon: Briefcase,
-    role: "Grafisch Vormgever",
-    period: "Juli 2021 – heden",
+    role: "Grafisch vormgever",
+    period: "juli 2021–heden",
     org: "a.s.r. verzekeringen",
-    body: "Opmaak van complexe documenten binnen de a.s.r.-huisstijl: polisvoorwaarden, brochures, rapportages, PowerPoint-presentaties en invulbare pdf-formulieren. Daarnaast nam ik het initiatief om terugkerende productieprocessen te automatiseren met zelfgebouwde tools. Daardoor werkt het team sneller en consistenter.",
+    body: "Ik verzorg de huisstijlvaste opmaak van complexe communicatiemiddelen, waaronder polisvoorwaarden, brochures, rapportages, PowerPoint-presentaties en invulbare PDF-formulieren. Daarnaast initieer en bouw ik tools die terugkerende productieprocessen automatiseren. Zo werkt het team sneller, consistenter en met minder handmatige stappen.",
   },
   {
     icon: Briefcase,
-    role: "DTP & Grafische vormgeving",
-    period: "2012 – 2021",
-    org: "o.a. FHC, Groupcard, Gemeente Leiden, Sanoma, HEMA",
-    body: "Ruim negen jaar ervaring opgebouwd in DTP en grafische vormgeving. Aangevuld met een periode als zelfstandig vormgever. Van tijdschriftopmaak en huisstijlontwikkeling tot beleidsdocumenten: een brede basis in zowel print als digitaal.",
+    role: "DTP & grafische vormgeving",
+    period: "2012–2021",
+    org: "Onder andere FHC, Groupcard, Gemeente Leiden, Sanoma en HEMA",
+    body: "In ruim negen jaar bouwde ik een brede basis op in print en digitale vormgeving. Mijn werkzaamheden liepen uiteen van tijdschriftopmaak en huisstijlontwikkeling tot de productie van beleidsdocumenten. In deze periode werkte ik ook als zelfstandig vormgever.",
   },
   {
     icon: GraduationCap,
@@ -205,22 +214,22 @@ const skills = [
   {
     icon: InDesignIcon,
     title: "Adobe InDesign",
-    body: "Dagelijks gebruikt sinds 2012, inclusief scriptgestuurde opmaak voor complexe documenten.",
+    body: "Dagelijks gebruikt sinds 2012 voor huisstijlvaste opmaak van complexe documenten, inclusief scriptgestuurde tabel- en documentopmaak.",
   },
   {
     icon: FilePen,
     title: "Illustrator & Photoshop",
-    body: "Vast onderdeel van het productieproces, van beeldbewerking tot narrowcasting-grafieken.",
+    body: "Vast onderdeel van mijn productieproces, van beeldbewerking en illustraties tot automatisch gegenereerde narrowcastinggrafieken.",
   },
   {
     icon: AiChipIcon,
-    title: "AI & Automatisering",
-    body: "Zelf geleerd, toegepast in vier zelfgebouwde tools die dagelijks werk automatiseren.",
+    title: "AI & procesautomatisering",
+    body: "Ik vertaal terugkerend handwerk naar praktische tools en scripts die echte productieprocessen sneller, consistenter en minder foutgevoelig maken.",
   },
   {
     icon: Code2,
-    title: "Bouwen met AI-ondersteuning",
-    body: "JavaScript en Python, ontwikkeld met Claude en Claude Code als vaste werkwijze.",
+    title: "JavaScript, Python & ExtendScript",
+    body: "Ik bouw browsertools en Adobe-scripts voor dataverwerking, documentopmaak en procesautomatisering, met AI als ondersteuning tijdens het ontwikkelen.",
   },
 ];
 
@@ -387,11 +396,17 @@ function Hero() {
           <p className="text-xl sm:text-2xl font-semibold text-[#A78BFA] mb-7 min-h-[4rem] sm:min-h-[2.6rem]">
             <Typewriter />
           </p>
-          <p className="text-base sm:text-lg text-[#9AA4B2] leading-relaxed max-w-xl mb-8">
-            Ik ontwerp duidelijke en consistente visuele communicatie, van brochures en
-            documenten tot digitale uitingen. Daarnaast combineer ik ontwerp met AI en
-            automatisering om terugkerend handwerk te verminderen.
-          </p>
+          <div className="text-base sm:text-lg text-[#9AA4B2] leading-relaxed max-w-xl mb-8 space-y-4">
+            <p>
+              Ik maak duidelijke, consistente visuele communicatie binnen vaste huisstijlen. Van
+              brochures, documenten en rapportages tot digitale uitingen.
+            </p>
+            <p>
+              Daarnaast verbeter ik werkprocessen met AI, scripts en zelfgebouwde tools. Daarmee
+              verminder ik repetitief DTP-werk en maak ik complexe opmaaktaken sneller, slimmer en
+              minder foutgevoelig.
+            </p>
+          </div>
           <div className="flex flex-wrap gap-2 mb-10">
             {heroChips.map((chip) => (
               <span key={chip} className="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#C7CEDB] font-medium">
@@ -401,11 +416,11 @@ function Hero() {
           </div>
           <div className="flex flex-wrap gap-4">
             <a href="#projecten" className="inline-flex items-center gap-2 bg-[#7C3AED] text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-[#6D28D9] transition-colors">
-              Bekijk projecten
+              Bekijk mijn projecten
               <ArrowUpRight size={16} />
             </a>
-            <a href="#contact" className="inline-block border border-white/20 text-[#F1F3F8] px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/5 transition-colors">
-              Neem contact op
+            <a href="#cv" className="inline-block border border-white/20 text-[#F1F3F8] px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/5 transition-colors">
+              Bekijk mijn CV
             </a>
           </div>
         </div>
@@ -493,22 +508,32 @@ function About() {
         <div className="order-2">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Over mij</p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-8">Vormgeven én zelf bouwen.</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-8">
+              Vormgever met een technische blik op werkprocessen
+            </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="space-y-5 text-[#C7CEDB] text-base sm:text-lg leading-relaxed">
               <p>
-                Ik ben Marjolijn, grafisch vormgever bij a.s.r. verzekeringen. Sinds 2012 werk ik in
-                DTP en grafische vormgeving. Nu doe ik dat binnen het in-house designteam van Corporate
-                Communicatie, met zeven vormgevers. Daar maak ik complexe documenten op binnen de
-                huisstijl: polisvoorwaarden, brochures, rapportages en formulieren.
+                Ik ben Marjolijn de Vries, grafisch vormgever bij a.s.r. verzekeringen. Sinds 2012 werk
+                ik in DTP en grafische vormgeving. Binnen het in-house designteam van Corporate
+                Communicatie werk ik aan huisstijlvaste communicatie, zoals polisvoorwaarden, brochures,
+                rapportages, formulieren en andere complexe documenten.
               </p>
               <p>
-                Naast dat vormgevingswerk ben ik zelf gaan bouwen. Repeterende taken in mijn team
-                kostten onnodig veel tijd. Dus loste ik dat zelf op. Ik bouwde browser-based tools die
-                dat werk automatiseren. Een urenregistratiesysteem dat het hele team dagelijks gebruikt.
-                En een script dat Word-tabellen omzet naar InDesign-opmaak. Geen kant-en-klare software,
-                gewoon zelf gebouwd en getest op echte documenten uit mijn werk.
+                Naast mijn ontwerpwerk richt ik mij steeds meer op AI en procesoptimalisatie. Ik zie
+                waar repeterend werk tijd kost, waar fouten kunnen ontstaan en waar slimme ondersteuning
+                het werkproces kan verbeteren.
+              </p>
+              <p>
+                Daarom bouw ik praktische tools en scripts die aansluiten op echte DTP-processen.
+                Bijvoorbeeld een urenregistratiesysteem dat dagelijks door het team wordt gebruikt en
+                een script dat Word-tabellen omzet naar bruikbare InDesign-opmaak.
+              </p>
+              <p>
+                Mijn kracht zit in de combinatie van visuele nauwkeurigheid, praktisch procesdenken en
+                technische nieuwsgierigheid. Ik ontwerp niet alleen wat er goed uitziet, maar kijk ook
+                hoe het werk erachter slimmer, consistenter en efficiënter kan.
               </p>
             </div>
           </Reveal>
@@ -606,6 +631,13 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
     setPlaying(false);
   };
 
+  const go = (delta: number) => {
+    const n = project.media.length;
+    setActive((a) => (a + delta + n) % n);
+  };
+  const touchStartX = useRef<number | null>(null);
+  const mediaLabel = item.type === "video" ? "Video" : "Screenshot";
+
   return (
     <div>
       {/* App/browser-mockup */}
@@ -628,6 +660,15 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
           onMouseLeave={() => {
             if (item.type === "video" && canHover && !reduce) pauseVideo();
           }}
+          onTouchStart={(e) => {
+            touchStartX.current = e.touches[0].clientX;
+          }}
+          onTouchEnd={(e) => {
+            if (touchStartX.current === null || project.media.length < 2) return;
+            const dx = e.changedTouches[0].clientX - touchStartX.current;
+            if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+            touchStartX.current = null;
+          }}
         >
           {item.type === "video" ? (
             <>
@@ -648,10 +689,13 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
                 <button
                   onClick={playVideo}
                   aria-label={`Video van ${project.title} afspelen`}
-                  className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/20"
+                  className="group/play absolute inset-0 flex items-center justify-center"
                 >
-                  <span className="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center shadow-lg shadow-black/40">
-                    <Play size={22} className="text-white translate-x-[2px]" fill="white" />
+                  <span className="relative flex items-center justify-center">
+                    <span className="absolute -inset-3 rounded-full bg-black/30 blur-lg" />
+                    <span className="relative w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center shadow-xl shadow-black/50 ring-4 ring-black/10 transition-transform group-hover/play:scale-105">
+                      <Play size={22} className="text-white translate-x-[2px]" fill="white" />
+                    </span>
                   </span>
                 </button>
               )}
@@ -675,19 +719,31 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
         </div>
       </div>
 
-      {/* Subtiele stippen i.p.v. thumbnailrij */}
+      {/* Gelabelde bediening i.p.v. stippen */}
       {project.media.length > 1 && (
-        <div className="flex items-center gap-2 mt-4">
-          {project.media.map((m, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              aria-label={`Beeld ${i + 1} van ${project.title}`}
-              className={`h-2 rounded-full transition-all ${
-                i === active ? "w-6 bg-[#7C3AED]" : "w-2 bg-white/20 hover:bg-white/40"
-              }`}
-            />
-          ))}
+        <div className="flex items-center gap-3 mt-4">
+          <button
+            onClick={() => go(-1)}
+            aria-label={`Vorige weergave van ${project.title}`}
+            className="w-11 h-11 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-[#C7CEDB] hover:border-[#7C3AED] hover:text-white hover:bg-white/5 transition"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="px-3 py-1.5 rounded-full bg-[#7C3AED]/15 border border-[#7C3AED]/30 text-[#C4B5FD] font-semibold text-xs">
+              {mediaLabel}
+            </span>
+            <span className="text-[#6B7688] tabular-nums font-medium">
+              {active + 1} / {project.media.length}
+            </span>
+          </div>
+          <button
+            onClick={() => go(1)}
+            aria-label={`Volgende weergave van ${project.title}`}
+            className="w-11 h-11 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-[#C7CEDB] hover:border-[#7C3AED] hover:text-white hover:bg-white/5 transition"
+          >
+            <ChevronRight size={18} />
+          </button>
         </div>
       )}
     </div>
@@ -713,7 +769,7 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
       <div
         className={`grid ${
           reversed ? "md:grid-cols-[1fr_1.25fr]" : "md:grid-cols-[1.25fr_1fr]"
-        } gap-8 lg:gap-14 items-center`}
+        } gap-8 lg:gap-14 items-start`}
       >
         <div className={reversed ? "md:order-2" : ""}>
           <ProjectMedia project={project} />
@@ -722,7 +778,8 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
           <div className="w-12 h-12 rounded-xl bg-[#7C3AED]/15 border border-[#7C3AED]/30 flex items-center justify-center mb-5">
             <Icon size={24} className="text-[#A78BFA]" />
           </div>
-          <h3 className="text-2xl font-bold tracking-tight mb-4">{project.title}</h3>
+          <h3 className="text-2xl font-bold tracking-tight mb-2">{project.title}</h3>
+          <p className="text-[#C7CEDB] text-[15px] leading-relaxed mb-5">{project.intro}</p>
           {/* Resultaat-badges */}
           <div className="flex flex-wrap gap-2 mb-6">
             {project.badges.map((b) => (
@@ -740,13 +797,10 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
             <PorBlock label="Oplossing" text={project.solution} />
             <PorBlock label="Resultaat" text={project.result} accent />
           </div>
-          {/* Techniek */}
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#9AA4B2] font-medium">
-                {tag}
-              </span>
-            ))}
+          {/* Gebouwd met */}
+          <div className="pt-4 border-t border-white/[0.07]">
+            <span className="text-[11px] uppercase tracking-[0.18em] font-bold text-[#5E6A7D]">Gebouwd met</span>
+            <p className="text-sm text-[#9AA4B2] mt-1.5 leading-relaxed">{project.builtWith}</p>
           </div>
         </div>
       </div>
@@ -842,9 +896,12 @@ function Contact() {
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-start">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Contact</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Vragen of interesse in mijn werk?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-6">
+            Op zoek naar een vormgever die ook processen slimmer maakt?
+          </h2>
           <p className="text-[#9AA4B2] leading-relaxed max-w-sm mb-8">
-            Stuur gerust een bericht, ik hoor graag van je.
+            Heb je een vraag over mijn werk of wil je kennismaken? Stuur me gerust een bericht. Ik
+            vertel graag meer over mijn ervaring, projecten en aanpak.
           </p>
           <a href="mailto:marjolijndevries03@gmail.com" className="inline-flex items-center gap-2 text-[#C7CEDB] hover:text-[#A78BFA] transition-colors font-medium">
             <Mail size={18} />
@@ -888,10 +945,10 @@ function Contact() {
               </div>
               <div>
                 <label className="block text-xs uppercase tracking-widest text-[#9AA4B2] font-semibold mb-2">Bericht</label>
-                <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Vertel iets over je project of vraag..." className={`${inputClass} resize-none`} />
+                <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Vertel kort waarover je contact wilt opnemen…" className={`${inputClass} resize-none`} />
               </div>
               <button type="submit" disabled={sending} className="w-full bg-[#7C3AED] text-white px-7 py-4 rounded-xl text-sm font-semibold hover:bg-[#6D28D9] transition-colors disabled:opacity-60">
-                {sending ? "Versturen..." : "Verstuur bericht"}
+                {sending ? "Versturen..." : "Stuur bericht"}
               </button>
             </form>
           )}
