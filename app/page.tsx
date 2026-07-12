@@ -769,7 +769,7 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
       <div
         className={`grid ${
           reversed ? "md:grid-cols-[1fr_1.25fr]" : "md:grid-cols-[1.25fr_1fr]"
-        } gap-8 lg:gap-14 items-start`}
+        } gap-8 lg:gap-14 items-center`}
       >
         <div className={reversed ? "md:order-2" : ""}>
           <ProjectMedia project={project} />
