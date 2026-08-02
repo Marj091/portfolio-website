@@ -290,7 +290,7 @@ function Typewriter() {
   return (
     <span>
       {text}
-      <span className="inline-block w-[3px] h-[0.95em] bg-[#34D399] ml-1 translate-y-[0.12em] animate-pulse" />
+      <span className="inline-block w-[3px] h-[0.95em] bg-[#A78BFA] ml-1 translate-y-[0.12em] animate-pulse" />
     </span>
   );
 }
@@ -350,11 +350,11 @@ function Nav() {
     <header className="fixed top-0 inset-x-0 z-50 bg-[#080B12]/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#hero" className="font-bold tracking-tight text-[#F1F3F8]">
-          Marjolijn de Vries<span className="text-[#10B981]">.</span>
+          Marjolijn de Vries<span className="text-[#7C3AED]">.</span>
         </a>
         <nav className="hidden md:flex gap-8">
           {navLinks.map(({ label, href }) => (
-            <a key={label} href={href} className="text-sm text-[#9AA4B2] hover:text-[#34D399] transition-colors font-medium">
+            <a key={label} href={href} className="text-sm text-[#9AA4B2] hover:text-[#A78BFA] transition-colors font-medium">
               {label}
             </a>
           ))}
@@ -368,7 +368,7 @@ function Nav() {
       {open && (
         <div className="md:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-4 bg-[#080B12]">
           {navLinks.map(({ label, href }) => (
-            <a key={label} href={href} onClick={() => setOpen(false)} className="text-sm font-medium text-[#F1F3F8] hover:text-[#34D399]">
+            <a key={label} href={href} onClick={() => setOpen(false)} className="text-sm font-medium text-[#F1F3F8] hover:text-[#A78BFA]">
               {label}
             </a>
           ))}
@@ -383,8 +383,8 @@ function Nav() {
 function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center px-6 pt-24 pb-16 overflow-hidden">
-      <div className="absolute -top-40 -right-32 w-[560px] h-[560px] rounded-full bg-[#10B981]/12 blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-0 -left-32 w-[420px] h-[420px] rounded-full bg-[#10B981]/8 blur-[130px] pointer-events-none" />
+      <div className="absolute -top-40 -right-32 w-[560px] h-[560px] rounded-full bg-[#7C3AED]/12 blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-0 -left-32 w-[420px] h-[420px] rounded-full bg-[#7C3AED]/8 blur-[130px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -393,7 +393,7 @@ function Hero() {
             <br />
             de Vries
           </h1>
-          <p className="text-xl sm:text-2xl font-semibold text-[#34D399] mb-7 min-h-[4rem] sm:min-h-[2.6rem]">
+          <p className="text-xl sm:text-2xl font-semibold text-[#A78BFA] mb-7 min-h-[4rem] sm:min-h-[2.6rem]">
             <Typewriter />
           </p>
           <div className="text-base sm:text-lg text-[#9AA4B2] leading-relaxed max-w-xl mb-8 space-y-4">
@@ -415,7 +415,7 @@ function Hero() {
             ))}
           </div>
           <div className="flex flex-wrap gap-4">
-            <a href="#projecten" className="inline-flex items-center gap-2 bg-[#10B981] text-[#04160e] px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-[#059669] transition-colors">
+            <a href="#projecten" className="inline-flex items-center gap-2 bg-[#7C3AED] text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-[#6D28D9] transition-colors">
               Bekijk mijn projecten
               <ArrowUpRight size={16} />
             </a>
@@ -429,7 +429,7 @@ function Hero() {
         <div className="relative flex justify-center md:justify-end">
           <div className="relative w-[330px] sm:w-[420px] lg:w-[460px] aspect-[4/5]">
             {/* Zachte, sterk vervaagde paarse gloed (blurblob, geen randen) */}
-            <div className="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[74%] h-[58%] rounded-full bg-[#10B981]/16 blur-[80px] pointer-events-none" />
+            <div className="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[74%] h-[58%] rounded-full bg-[#7C3AED]/16 blur-[80px] pointer-events-none" />
 
             {/* Speels verspreide, kale achtergrond-icoontjes, ver uiteen */}
             <BgIcon icon={Monitor} size={70} className="top-2 -left-16 sm:-left-32" />
@@ -439,7 +439,7 @@ function Hero() {
 
             {/* Pijltje van de pc naar het hoofd (tekent zichzelf) */}
             <DrawnArrow
-              className="absolute -top-5 -left-12 sm:-left-24 w-44 sm:w-64 h-24 text-[#34D399]/70 z-20 pointer-events-none"
+              className="absolute -top-5 -left-12 sm:-left-24 w-44 sm:w-64 h-24 text-[#A78BFA]/70 z-20 pointer-events-none"
               viewBox="0 0 200 100"
               d="M8 24 C 74 4, 138 10, 172 60"
               head="M154 54 L176 64 L162 38"
@@ -448,7 +448,7 @@ function Hero() {
 
             {/* Krullend pijltje van het AI-icoon naar het hoofd, op afstand */}
             <DrawnArrow
-              className="absolute top-8 -right-1 sm:-right-2 w-24 h-32 text-[#34D399]/60 z-20 pointer-events-none"
+              className="absolute top-8 -right-1 sm:-right-2 w-24 h-32 text-[#A78BFA]/60 z-20 pointer-events-none"
               viewBox="0 0 95 122"
               d="M80 18 C 84 48, 58 44, 44 62 C 30 78, 36 98, 18 108"
               head="M32 105 L18 108 L24 94"
@@ -488,7 +488,7 @@ function About() {
         <Reveal className="order-1">
           <div className="relative mx-auto md:mx-0 w-64 sm:w-80 md:w-full max-w-md aspect-[4/5]">
             <Image
-              src="/marjolijn-bureau-groen.jpg"
+              src="/marjolijn-bureau.jpg"
               alt="Illustratie van Marjolijns werkplek met design- en code-elementen"
               width={1100}
               height={1375}
@@ -507,7 +507,7 @@ function About() {
         {/* Tekst rechts */}
         <div className="order-2">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#34D399] font-semibold mb-4">Over mij</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Over mij</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-8">
               Vormgever met een technische blik op werkprocessen
             </h2>
@@ -551,7 +551,7 @@ function Skills() {
       <div className="max-w-6xl mx-auto">
         <div className="max-w-xl">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#34D399] font-semibold mb-4">Vaardigheden</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Vaardigheden</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-12">
               Waar ik dagelijks mee werk, met bewijs in plaats van een cijfer.
             </h2>
@@ -562,9 +562,9 @@ function Skills() {
             const Icon = s.icon;
             return (
               <Reveal key={s.title} delay={i * 0.09}>
-                <div className="group h-full bg-[#121826] border border-white/10 rounded-2xl p-7 transition-all duration-300 hover:border-[#10B981] hover:bg-[#171F2F] hover:-translate-y-1">
-                  <div className="w-12 h-12 rounded-xl bg-[#10B981]/12 flex items-center justify-center mb-5">
-                    <Icon size={26} strokeWidth={1.6} className="text-[#34D399]" />
+                <div className="group h-full bg-[#121826] border border-white/10 rounded-2xl p-7 transition-all duration-300 hover:border-[#7C3AED] hover:bg-[#171F2F] hover:-translate-y-1">
+                  <div className="w-12 h-12 rounded-xl bg-[#7C3AED]/12 flex items-center justify-center mb-5">
+                    <Icon size={26} strokeWidth={1.6} className="text-[#A78BFA]" />
                   </div>
                   <h3 className="text-lg font-bold mb-2.5">{s.title}</h3>
                   <p className="text-sm text-[#9AA4B2] leading-relaxed">{s.body}</p>
@@ -693,8 +693,8 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
                 >
                   <span className="relative flex items-center justify-center">
                     <span className="absolute -inset-3 rounded-full bg-black/30 blur-lg" />
-                    <span className="relative w-14 h-14 rounded-full bg-[#10B981] flex items-center justify-center shadow-xl shadow-black/50 ring-4 ring-black/10 transition-transform group-hover/play:scale-105">
-                      <Play size={22} className="text-[#04160e] translate-x-[2px]" fill="#04160e" />
+                    <span className="relative w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center shadow-xl shadow-black/50 ring-4 ring-black/10 transition-transform group-hover/play:scale-105">
+                      <Play size={22} className="text-white translate-x-[2px]" fill="white" />
                     </span>
                   </span>
                 </button>
@@ -725,12 +725,12 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
           <button
             onClick={() => go(-1)}
             aria-label={`Vorige weergave van ${project.title}`}
-            className="w-11 h-11 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-[#C7CEDB] hover:border-[#10B981] hover:text-white hover:bg-white/5 transition"
+            className="w-11 h-11 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-[#C7CEDB] hover:border-[#7C3AED] hover:text-white hover:bg-white/5 transition"
           >
             <ChevronLeft size={18} />
           </button>
           <div className="flex items-center gap-2 text-sm">
-            <span className="px-3 py-1.5 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#6EE7B7] font-semibold text-xs">
+            <span className="px-3 py-1.5 rounded-full bg-[#7C3AED]/15 border border-[#7C3AED]/30 text-[#C4B5FD] font-semibold text-xs">
               {mediaLabel}
             </span>
             <span className="text-[#6B7688] tabular-nums font-medium">
@@ -740,7 +740,7 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
           <button
             onClick={() => go(1)}
             aria-label={`Volgende weergave van ${project.title}`}
-            className="w-11 h-11 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-[#C7CEDB] hover:border-[#10B981] hover:text-white hover:bg-white/5 transition"
+            className="w-11 h-11 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-[#C7CEDB] hover:border-[#7C3AED] hover:text-white hover:bg-white/5 transition"
           >
             <ChevronRight size={18} />
           </button>
@@ -753,7 +753,7 @@ function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
 function PorBlock({ label, text, accent = false }: { label: string; text: string; accent?: boolean }) {
   return (
     <div>
-      <p className={`text-[11px] uppercase tracking-[0.18em] font-bold mb-1.5 ${accent ? "text-[#34D399]" : "text-[#5E6A7D]"}`}>
+      <p className={`text-[11px] uppercase tracking-[0.18em] font-bold mb-1.5 ${accent ? "text-[#A78BFA]" : "text-[#5E6A7D]"}`}>
         {label}
       </p>
       <p className="text-[#9AA4B2] leading-relaxed text-[15px]">{text}</p>
@@ -775,8 +775,8 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
           <ProjectMedia project={project} />
         </div>
         <div className={reversed ? "md:order-1" : ""}>
-          <div className="w-12 h-12 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center mb-5">
-            <Icon size={24} className="text-[#34D399]" />
+          <div className="w-12 h-12 rounded-xl bg-[#7C3AED]/15 border border-[#7C3AED]/30 flex items-center justify-center mb-5">
+            <Icon size={24} className="text-[#A78BFA]" />
           </div>
           <h3 className="text-2xl font-bold tracking-tight mb-2">{project.title}</h3>
           <p className="text-[#C7CEDB] text-[15px] leading-relaxed mb-5">{project.intro}</p>
@@ -785,7 +785,7 @@ function ProjectRow({ project, index }: { project: (typeof projects)[number]; in
             {project.badges.map((b) => (
               <span
                 key={b}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#6EE7B7]"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#7C3AED]/15 border border-[#7C3AED]/30 text-[#C4B5FD]"
               >
                 <Check size={13} strokeWidth={2.5} /> {b}
               </span>
@@ -813,7 +813,7 @@ function Projects() {
     <section id="projecten" className="py-24 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.2em] text-[#34D399] font-semibold mb-4">Projecten</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Projecten</p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Zelfgebouwde tools.</h2>
           <p className="text-[#9AA4B2] max-w-2xl mb-16">
             Elk project lost een probleem op dat ik zelf tegenkwam, op werk of thuis.
@@ -837,7 +837,7 @@ function CV() {
       <div className="max-w-6xl mx-auto">
         <div className="max-w-3xl">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#34D399] font-semibold mb-4">CV</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">CV</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-16">Werkervaring &amp; opleiding.</h2>
           </Reveal>
           <div className="relative">
@@ -848,12 +848,12 @@ function CV() {
                 return (
                   <Reveal key={i} delay={i * 0.05}>
                     <div className="relative pl-14">
-                      <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-[#121826] border border-[#10B981]/40 flex items-center justify-center">
-                        <Icon size={18} className="text-[#34D399]" />
+                      <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-[#121826] border border-[#7C3AED]/40 flex items-center justify-center">
+                        <Icon size={18} className="text-[#A78BFA]" />
                       </div>
                       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
                         <h3 className="text-lg font-bold">{item.role}</h3>
-                        <span className="text-sm text-[#34D399] font-medium">{item.period}</span>
+                        <span className="text-sm text-[#A78BFA] font-medium">{item.period}</span>
                       </div>
                       <p className="text-sm font-semibold text-[#C7CEDB] mb-3">{item.org}</p>
                       <p className="text-[#9AA4B2] leading-relaxed">{item.body}</p>
@@ -889,13 +889,13 @@ function Contact() {
   }
 
   const inputClass =
-    "w-full bg-[#080B12] border border-white/10 rounded-xl px-4 py-3.5 text-sm text-[#F1F3F8] placeholder-[#5A6578] focus:outline-none focus:border-[#10B981] transition-colors";
+    "w-full bg-[#080B12] border border-white/10 rounded-xl px-4 py-3.5 text-sm text-[#F1F3F8] placeholder-[#5A6578] focus:outline-none focus:border-[#7C3AED] transition-colors";
 
   return (
     <section id="contact" className="py-24 px-6 border-t border-white/5">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-start">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.2em] text-[#34D399] font-semibold mb-4">Contact</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA] font-semibold mb-4">Contact</p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-6">
             Op zoek naar een vormgever die ook processen slimmer maakt?
           </h2>
@@ -903,7 +903,7 @@ function Contact() {
             Heb je een vraag over mijn werk of wil je kennismaken? Stuur me gerust een bericht. Ik
             vertel graag meer over mijn ervaring, projecten en aanpak.
           </p>
-          <a href="mailto:marjolijndevries03@gmail.com" className="inline-flex items-center gap-2 text-[#C7CEDB] hover:text-[#34D399] transition-colors font-medium">
+          <a href="mailto:marjolijndevries03@gmail.com" className="inline-flex items-center gap-2 text-[#C7CEDB] hover:text-[#A78BFA] transition-colors font-medium">
             <Mail size={18} />
             marjolijndevries03@gmail.com
           </a>
@@ -917,7 +917,7 @@ function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-11 h-11 rounded-full border border-white/12 flex items-center justify-center text-[#C7CEDB] hover:text-white hover:border-[#10B981] hover:bg-[#10B981]/15 transition-colors"
+                  className="w-11 h-11 rounded-full border border-white/12 flex items-center justify-center text-[#C7CEDB] hover:text-white hover:border-[#7C3AED] hover:bg-[#7C3AED]/15 transition-colors"
                 >
                   <Icon size={18} />
                 </a>
@@ -928,7 +928,7 @@ function Contact() {
 
         <Reveal delay={0.1}>
           {sent ? (
-            <div className="bg-[#10B981]/10 border border-[#10B981]/30 rounded-2xl p-10 text-center">
+            <div className="bg-[#7C3AED]/10 border border-[#7C3AED]/30 rounded-2xl p-10 text-center">
               <div className="text-4xl mb-4">✓</div>
               <p className="text-xl font-bold mb-2">Bericht ontvangen!</p>
               <p className="text-[#9AA4B2] text-sm">Ik reageer zo snel mogelijk.</p>
@@ -947,7 +947,7 @@ function Contact() {
                 <label className="block text-xs uppercase tracking-widest text-[#9AA4B2] font-semibold mb-2">Bericht</label>
                 <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Vertel kort waarover je contact wilt opnemen…" className={`${inputClass} resize-none`} />
               </div>
-              <button type="submit" disabled={sending} className="w-full bg-[#10B981] text-[#04160e] px-7 py-4 rounded-xl text-sm font-semibold hover:bg-[#059669] transition-colors disabled:opacity-60">
+              <button type="submit" disabled={sending} className="w-full bg-[#7C3AED] text-white px-7 py-4 rounded-xl text-sm font-semibold hover:bg-[#6D28D9] transition-colors disabled:opacity-60">
                 {sending ? "Versturen..." : "Stuur bericht"}
               </button>
             </form>
